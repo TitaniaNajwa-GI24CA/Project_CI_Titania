@@ -7,7 +7,7 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-<table class="table table-bordered" width="100%" cellspasing="0" id="dataTable">
+<table class="table custom-table" width="100%" cellspasing="0" id="dataTable">
     <thead>
         <tr>
             <th>No</th>
@@ -23,14 +23,14 @@
     <?php $no=1; foreach($buku as $b): ?>
     <tr>
         <td><?=$no++;?></td>
-        <td><?=$b->kode_buku;?></td>
+        <td><?=$b->buku_id;?></td>
         <td><?=$b->judul_buku;?></td>
         <td><?=$b->penulis;?></td>
         <td><?=$b->nama_kategori;?></td>
         <td><?=$b->stok;?></td>
         <td>
-            <a href="<?= site_url('buku/edit/'.$b->kode_buku);?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-            <a href="<?= site_url('buku/hapus/'.$b->kode_buku);?>"
+            <a href="<?= site_url('buku/edit/'.$b->buku_id);?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="<?= site_url('buku/hapus/'.$b->buku_id);?>"
             onclick="return confirm('Yakin Ingin Menghapus Data?')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
         </td>
     </tr>

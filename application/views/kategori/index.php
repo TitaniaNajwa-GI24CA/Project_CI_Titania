@@ -1,13 +1,12 @@
 <div class="container-fluid">
-<i class="fas fa-tags"></i>
-<h2><b>Data Kategori</b></h2>
+<h2><b><i class="fas fa-tags"></i>Data Kategori</b></h2>
 
 <a href="<?=site_url('kategori/tambah');?>" class="btn btn-primary mb-3">Tambah Data</a>
 
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-<table class="table table-bordered" width="100%" cellspasing="0" id="dataTable">
+<table class="table custom-table" width="100%" cellspasing="0" id="dataTable">
     <thead>
         <tr>
             <th>No</th>

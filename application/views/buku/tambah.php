@@ -6,11 +6,6 @@
 
 <form method="post" action="<?= site_url('buku/simpan');?>">
     <div class="form-group">
-    <label>Kode Buku</label><br>
-    <input type="text" name="kode_buku" class="form-control" required>
-    </div>
-
-    <div class="form-group">
     <label>Judul Buku</label><br>
     <input type="text" name="judul_buku" class="form-control" required>
     </div>

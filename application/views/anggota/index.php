@@ -1,13 +1,13 @@
 <div class="container-fluid">
 
-<h2><b><i class="fas fa-book-open"></i> Data Anggota</b></h2>
+<h2><b><i class="fas fa-users"></i> Data Anggota</b></h2>
 
 <a href="<?=site_url('anggota/tambah');?>" class="btn btn-primary mb-3">Tambah Data Anggota <i class="fas fa-plus-circle"></i></a>
 
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-<table class="table table-bordered" width="100%" cellspasing="0" id="dataTable">
+<table class="table custom-table" width="100%" cellspasing="0" id="dataTable">
     <thead>
         <tr>
             <th>No</th>

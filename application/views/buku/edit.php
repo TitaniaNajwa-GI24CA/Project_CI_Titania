@@ -4,9 +4,9 @@
 <div class="card shadow">
     <div class="card-body">
 
-<form method="post" action="<?= site_url('buku/update/'.$buku->kode_buku);?>">
+<form method="post" action="<?= site_url('buku/update/'.$buku->buku_id);?>">
     <div class="form-group">
-    <input type="hidden" name="kode_buku" value="<?= $buku->kode_buku; ?>">
+    <input type="hidden" name="buku_id" value="<?= $buku->buku_id; ?>">
     <label>Judul Buku</label><br>
     <input type="text" name="judul_buku" class="form-control" value="<?= $buku->judul_buku;?>" required>
     </div>
