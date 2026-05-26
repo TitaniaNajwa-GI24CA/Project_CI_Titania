@@ -68,11 +68,17 @@
         </a>
     </li>
 
-    <!-- DATA PEMINJAMAN -->
     <li class="nav-item">
         <a class="nav-link" href="<?= site_url('laporan/peminjaman')?>">
             <i class="fas fa-chart-line"></i>
             <span>Laporan Peminjaman</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('laporan/data_buku')?>">
+            <i class="fas fa-chart-line"></i>
+            <span>Laporan Data Buku</span>
         </a>
     </li>
 

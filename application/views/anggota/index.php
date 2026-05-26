@@ -14,7 +14,7 @@
             <th>ID Anggota</th>
             <th>Nama Anggota</th>
             <th>Alamat</th>
-            <th>No Telp</th>
+            <th>No Telepon</th>
             <th>Aksi</th>
         </tr>
     </thead>
