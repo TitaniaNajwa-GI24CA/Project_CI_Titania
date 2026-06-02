@@ -1,106 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <title>Login - PT Maju Jaya Electronic</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Perpustakaan - Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets/css/sb-admin-2.min.css');?>" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/all.min.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/css/auth.css'); ?>">
 </head>
+<body class="login-page">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <img src="<?= base_url('assets/img/logo-img.png'); ?>" class="logo-img-login" alt="Logo">
+            <h2>Selamat Datang</h2>
+            <p>Masuk untuk melanjutkan ke sistem</p>
 
-<body class="bg-gradient-primary">
+            <?php if($this->session->flashdata('success')) : ?>
+                <div class="alert-success-custom">
+                    <i class="fas fa-circle-check"></i>
+                    <?= $this->session->flashdata('success'); ?>
+                </div>
+            <?php endif; ?>
 
-    <div class="container">
+            <?php if($this->session->flashdata('error')) : ?>
+                <div class="alert-error-custom">
+                    <i class="fas fa-circle-xmark"></i>
+                    <?= $this->session->flashdata('error'); ?>
+                </div>
+            <?php endif; ?>
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+            <form action="<?= base_url('auth/proses_login'); ?>" method="post">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center">
-                                <div class="text-center">
-                                    <img src="<?= base_url('assets/img/perpus.png');?>" 
-                                        width="500"
-                                        class="mb-6">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4"><b>Welcome Back!</b></h1>
-                                    </div>
-                                    <?php if($this->session->flashdata('error')):?>
-                                        <div class="alert alert-danger">
-                                            <?= $this->session->flashdata('error'); ?>
-                                        </div>
-                                    <?php endif;?>
-                                    <form class="user" method="post" action="<?= site_url('login/proses');?>">
-                                        <div class="form-group">
-                                            <input type="text" name="username" class="form-control form-control-user"
-                                                placeholder="Username" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="#">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="#">Create an Account!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="input-group-custom">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="username" class="form-control" placeholder="Masukkan username" required>
                 </div>
 
-            </div>
+                <div class="input-group-custom">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="password" class="form-control" placeholder="Masukkan password" required>
+                </div>
+
+                <div class="input-group-custom">
+                    <i class="fa fa-shield-halved"></i>
+                    <select name="role" class="form-control" required>
+                        <option value="">Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="sales">Sales</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                </div>
+
+                <div class="login-options">
+                    <label>
+                        <input type="checkbox"> Ingat saya
+                    </label>
+
+                    <a href="#">Lupa password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fa fa-right-to-bracket"></i> Login
+                </button>
+
+                <div class="divider">
+                    <span>atau</span>
+                </div>
+
+                <a href="<?= base_url('auth/registrasi'); ?>" class="btn-register-outline">
+                    <i class="fa fa-user-plus"></i> Register Akun
+                </a>
+
+            </form>
 
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if($this->session->flashdata('success')) : ?>
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Registrasi Berhasil!',
+            html: 'Akun berhasil dibuat.<br>Silakan login untuk melanjutkan.',
+            confirmButtonText: 'Login Sekarang',
+            background: '#fffaf5',
+            color: '#7c2d12',
+            confirmButtonColor: '#ea580c'
+        });
+        </script>
+    <?php endif; ?>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('assets/vendor/jquery/jquery.min.js');?>"></script>
-    <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="<?= base_url('assets/vendor/jquery-easing/jquery.easing.min.js');?>"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="<?= base_url('assets/js/sb-admin-2.min.js');?>"></script>
-
+    <?php if($this->session->flashdata('error')) : ?>
+        <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Login Gagal!',
+            text: '<?= $this->session->flashdata('error'); ?>',
+            confirmButtonText: 'Coba Lagi',
+            background: '#fffaf5',
+            color: '#7c2d12',
+            confirmButtonColor: '#ea580c'
+        });
+        </script>
+    <?php endif; ?>
 </body>
-
 </html>
