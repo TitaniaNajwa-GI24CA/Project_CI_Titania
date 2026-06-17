@@ -56,3 +56,16 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login']='auth';
 $route['login/proses']='auth/login';
 $route['logout']='auth/logout';
+$route['registrasi'] = 'auth/registrasi';
+$route['dashboard'] = 'admin/dashboard';
+$route['kategori-produk'] = 'admin/kategori';
+$route['kategori-produk/tambah'] = 'admin/kategori/store';
+$route['kategori-produk/update'] = 'admin/kategori/update';
+$route['kategori-produk/delete/(:num)'] = 'admin/kategori/delete/$1';
+
+$route['data-produk'] = 'admin/produk';
+$route['data-pelanggan'] = 'admin/pelanggan';
+$route['data-sales'] = 'admin/sales';
+$route['data-order'] = 'admin/order';
+
+$route['laporan'] = 'admin/laporan';

@@ -56,3 +56,84 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
 });
+
+function openModal(id){
+    document.getElementById(id).classList.add('show');
+}
+
+function closeModal(id){
+    document.getElementById(id).classList.remove('show');
+}
+
+function editKategori(id,nama){
+
+    document.getElementById('edit_id_kategori').value = id;
+    document.getElementById('edit_nama_kategori').value = nama;
+
+    openModal('modalEditKategori');
+}
+
+/* DELETE MODAL */
+    const deleteModal = document.getElementById("deleteModal");
+    const closeDeleteModal = document.getElementById("closeDeleteModal");
+    const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+    document.querySelectorAll(".open-delete-modal").forEach(function(btn){
+        btn.addEventListener("click", function(e){
+            e.preventDefault();
+
+            if(confirmDeleteBtn && deleteModal){
+                confirmDeleteBtn.href = this.dataset.url;
+                deleteModal.classList.add("active");
+            }
+        });
+    });
+
+    if(closeDeleteModal && deleteModal){
+        closeDeleteModal.addEventListener("click", function(){
+            deleteModal.classList.remove("active");
+        });
+    }
+
+    if(deleteModal){
+        deleteModal.addEventListener("click", function(e){
+            if(e.target === deleteModal){
+                deleteModal.classList.remove("active");
+            }
+        });
+    }
+
+
+$(document).ready(function(){
+    $('#project-datatable').DataTable({
+    pageLength: 5,
+    responsive: true,
+    autoWidth: false,
+
+    dom:
+    "<'top'lf>" +
+    "rt" +
+    "<'bottom'ip>",
+
+    language:{
+        search:"",
+        searchPlaceholder:"Cari kategori produk...",
+        lengthMenu:"Tampilkan _MENU_ data",
+        info:"Menampilkan _START_ - _END_ dari _TOTAL_ data",
+        paginate:{
+            previous:"<",
+            next:">"
+        },
+            zeroRecords:
+                "Data tidak ditemukan",
+
+            infoEmpty:
+                "Tidak ada data",
+
+            infoFiltered:
+                "(difilter dari _MAX_ data)"
+        }
+
+    });
+
+});
