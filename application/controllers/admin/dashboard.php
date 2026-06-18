@@ -21,21 +21,16 @@ class dashboard extends CI_Controller {
     public function index()
     {
         $id_user = $this->session->userdata('id_user');
-
         $data['title'] = 'Dashboard';
         $data['page_title'] = 'Dashboard';
         $data['page_subtitle'] = 'Selamat datang kembali, '.$this->session->userdata('nama_user').' ✨';
-
         $data['user_profile'] = $this->dashboard_model->get_user_profile($id_user);
-
         $data['total_produk']     = $this->dashboard_model->total_produk();
         $data['total_pelanggan']  = $this->dashboard_model->total_pelanggan();
         $data['total_order']      = $this->dashboard_model->total_order();
         $data['total_pendapatan'] = $this->dashboard_model->total_pendapatan();
-
         $data['grafik_pendapatan'] = $this->dashboard_model->grafik_pendapatan();
         $data['kategori_terjual']  = $this->dashboard_model->kategori_terjual();
-
         $this->load->view('admin/layouts/header', $data);
         $this->load->view('admin/layouts/sidebar', $data);
         $this->load->view('admin/layouts/topbar', $data);

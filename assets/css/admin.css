@@ -501,10 +501,8 @@ ul{
 .admin-profile-photo img{
     width:135px;
     height:135px;
-
     border-radius:50%;
     object-fit:cover;
-
     border:4px solid #fb923c;
 }
 
@@ -512,7 +510,6 @@ ul{
 .admin-input-group label{
     display:block;
     margin-bottom:8px;
-
     color:#5a2e12;
     font-weight:600;
     font-size:14px;
@@ -522,14 +519,10 @@ ul{
 .admin-input-group input,
 .admin-input-group textarea{
     width:100%;
-
     border:none;
     outline:none;
-
     background:#fff1e6;
-
     border-radius:16px;
-
     padding:13px 16px;
 
     color:#3b1f0f;
@@ -554,41 +547,18 @@ ul{
     grid-column:1 / 3;
 }
 
-.admin-save-btn{
-    width:100%;
-    height:52px;
-
-    border:none;
-    border-radius:16px;
-
-    background:linear-gradient(135deg,#fb923c,#c2410c);
-    color:white;
-
-    font-weight:700;
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.admin-save-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 24px rgba(194,65,12,.25);
-}
-
-.logout-box{
+.logout-box,
+.delete-box {
     width:370px;
-
     background:#fffaf5;
     border-radius:28px;
-
     padding:35px 30px;
-
     text-align:center;
-
     box-shadow:0 25px 60px rgba(124,45,18,.18);
 }
 
-.logout-icon{
+.logout-icon,
+.delete-icon {
     width:80px;
     height:80px;
 
@@ -606,24 +576,29 @@ ul{
     font-size:32px;
 }
 
-.logout-box h3{
+.logout-box h3,
+.delete-box h3{
     color:#5a2e12;
     font-size:25px;
     margin-bottom:8px;
 }
 
-.logout-box p{
+.logout-box p,
+.delete-box p{
     color:#9a5a2e;
     margin-bottom:25px;
 }
 
-.logout-buttons{
+.logout-buttons,
+.delete-buttons{
     display:flex;
     gap:12px;
 }
 
 .cancel-logout,
-.confirm-logout{
+.confirm-logout,
+.cancel-delete,
+.confirm-delete{
     flex:1;
     height:48px;
 
@@ -638,21 +613,25 @@ ul{
     cursor:pointer;
 }
 
-.cancel-logout{
+.cancel-logout,
+.cancel-delete{
     background:#fff1e6;
     color:#7c2d12;
 }
 
-.confirm-logout{
+.confirm-logout,
+.confirm-delete{
     background:#c2410c;
     color:white;
 }
 
-.cancel-logout:hover{
+.cancel-logout:hover,
+.cancel-delete:hover{
     background:#fed7aa;
 }
 
-.confirm-logout:hover{
+.confirm-logout:hover,
+.confirm-delete:hover{
     background:#9a3412;
 }
 
@@ -680,67 +659,28 @@ ul{
 .admin-profile-box{
     width: 850px;
     max-width: 94%;
-
     background: rgba(255, 246, 249, 0.92);
-
     border-radius: 34px;
-
     padding: 38px 44px;
-
     position: relative;
-
     box-shadow:
         0 0 35px rgba(255, 170, 200, 0.28),
         0 24px 70px rgba(120, 50, 80, 0.18);
-
     border: 1px solid rgba(255,255,255,0.65);
-}
-
-.close-admin-profile{
-    position: absolute;
-    top: 22px;
-    right: 24px;
-
-    width: 40px;
-    height: 40px;
-
-    border: none;
-    border-radius: 50%;
-
-    background: #ffe3ec;
-    color: #d15f84;
-
-    font-size: 17px;
-
-    cursor: pointer;
-    transition: .3s;
-}
-
-.close-admin-profile:hover{
-    background: #f5a9c3;
-    color: white;
-    transform: rotate(90deg);
 }
 
 .admin-profile-box h2{
     text-align: center;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 46px;
-
     color: #4b2f28;
-
     margin-bottom: 6px;
 }
 
 .admin-profile-box > p{
     text-align: center;
-
     color: #8d6b6b;
-
     font-size: 16px;
-
     margin-bottom: 32px;
 }
 
@@ -760,15 +700,10 @@ ul{
 
 .admin-photo-card{
     background: rgba(255,255,255,0.48);
-
     border: 1px solid rgba(255,255,255,0.65);
-
     border-radius: 28px;
-
     padding: 34px 24px;
-
     text-align: center;
-
     box-shadow:
         inset 0 0 24px rgba(255,210,225,.22);
 }
@@ -780,15 +715,11 @@ ul{
 .admin-profile-photo img{
     width: 135px;
     height: 135px;
-
     border-radius: 50%;
-
     object-fit: cover;
-
-    border: 4px solid #ef9eb8;
-
+    border: 4px solid #f1981b;
     box-shadow:
-        0 0 22px rgba(255,140,180,.32);
+        0 0 22px rgba(255, 197, 140, 0.779);
 }
 
 .admin-photo-card label{
@@ -804,17 +735,11 @@ ul{
 
 .admin-photo-card input[type="file"]{
     width: 100%;
-
     padding: 12px;
-
     border-radius: 16px;
-
     border: 1px solid rgba(199,130,107,.22);
-
     background: rgba(255,255,255,.72);
-
     color: #6b4450;
-
     font-size: 13px;
 }
 
@@ -822,9 +747,7 @@ ul{
 
 .admin-form-grid{
     display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
+    grid-template-columns: 1fr 2fr;
     gap: 20px 24px;
 }
 
@@ -842,9 +765,7 @@ ul{
 .admin-input-group input{
     width: 100%;
     height: 54px;
-
     border: 1px solid rgba(199,130,107,.25);
-
     background: rgba(255,255,255,.78);
 
     border-radius: 18px;
@@ -1072,28 +993,43 @@ ul{
    ACTION BUTTON
 ========================== */
 
-.btn-edit{
-    width:38px;
-    height:38px;
-    border:none;
-    border-radius:10px;
-    background:#ffb648;
-    color:white;
-    cursor:pointer;
-    margin-right:5px;
-}
-
+/* Tombol Aksi */
+.edit-btn,
 .delete-btn{
-    width:38px;
-    height:38px;
-    border:none;
-    border-radius:10px;
-    background:#ef4444;
-    color:white;
+    width:42px;
+    height:42px;
     display:inline-flex;
     align-items:center;
     justify-content:center;
+    border-radius:14px;
+    color:#fff;
     text-decoration:none;
+
+    transition:0.3s ease;
+}
+
+/* Edit */
+.edit-btn{
+    background:#f5b041;
+}
+
+.edit-btn:hover{
+    background:#e67e22;
+    transform:translateY(-2px);
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+.delete-btn:hover{
+    background:#dc2626;
+    transform:translateY(-2px);
+}
+
+.edit-btn i,
+.delete-btn i{
+    font-size:14px;
 }
 
 /* ==========================
@@ -1110,6 +1046,12 @@ ul{
 .table-info{
     font-size:14px;
     color:#777;
+}
+
+.table-action{
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
 /* ==========================
@@ -1138,115 +1080,6 @@ ul{
 .pagination-wrapper .active span{
     background:#ff8c2f;
     color:white;
-}
-
-/* ==========================
-   MODAL
-========================== */
-
-.custom-modal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.4);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-}
-
-.custom-modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:500px;
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    animation:popup .3s ease;
-}
-
-@keyframes popup{
-    from{
-        opacity:0;
-        transform:translateY(-20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 25px;
-    border-bottom:1px solid #eee;
-}
-
-.modal-header h3{
-    margin:0;
-    color:#5b2c06;
-}
-
-.modal-header button{
-    border:none;
-    background:none;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.modal-body{
-    padding:25px;
-}
-
-.modal-footer{
-    padding:20px 25px;
-    border-top:1px solid #eee;
-    text-align:right;
-}
-
-/* ==========================
-   FORM
-========================== */
-
-.form-group{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:18px;
-}
-
-.form-group label{
-    margin-bottom:8px;
-    font-weight:600;
-    color:#5b2c06;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-    height:48px;
-    border:1px solid #e5d3c1;
-    border-radius:12px;
-    padding:0 15px;
-    outline:none;
-    transition:.3s;
-}
-
-.form-group textarea{
-    height:120px;
-    padding-top:15px;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-    border-color:#ff8c2f;
-    box-shadow:0 0 0 4px rgba(255,140,47,.15);
 }
 
 .status-badge{
@@ -1281,99 +1114,6 @@ ul{
 
 .delete-modal.active{
     display: flex;
-}
-
-.delete-box{
-    width: 380px;
-    background: rgba(255,245,248,.95);
-    border-radius: 28px;
-    padding: 34px 30px;
-    text-align: center;
-    box-shadow:
-        0 0 40px rgba(255,140,180,.28);
-    animation: modalPop .35s ease;
-}
-
-.delete-icon{
-    width: 74px;
-    height: 74px;
-    margin: 0 auto 18px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: linear-gradient(
-        135deg,
-        #d87330b7,
-        #ea7807
-    );
-
-    color: white;
-    font-size: 28px;
-}
-
-.delete-box h3{
-    font-size: 32px;
-
-    color: #4b2f28;
-
-    margin-bottom: 10px;
-
-    font-family: 'Cormorant Garamond', serif;
-}
-
-.delete-box p{
-    color: #7b5a52;
-    line-height: 1.7;
-    margin-bottom: 22px;
-    font-size: 14px;
-}
-
-.delete-buttons{
-    display: flex;
-    gap: 14px;
-}
-
-.cancel-delete,
-.confirm-delete{
-    flex: 1;
-    height: 48px;
-    border-radius: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: .3s ease;
-}
-
-.cancel-delete{
-    border: none;
-    background: #d873304c;
-    color: #ea7807;
-}
-
-.cancel-delete:hover{
-    background: #d873307a;
-}
-
-.confirm-delete{
-    background: linear-gradient(
-        135deg,
-        #d87330b7,
-        #ea7807
-    );
-
-    color: white;
-}
-
-.confirm-delete:hover{
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 22px rgba(239, 190, 158, 0.658);
 }
 
 @keyframes modalPop{
@@ -1429,7 +1169,7 @@ ul{
     width:80px;
     height:42px;
     border-radius:12px;
-    border:1px solid #e5d5c5;
+    border:1px solid #f57e08;
     padding:0 10px;
     margin:0 10px;
 }
@@ -1481,4 +1221,201 @@ ul{
 .dataTables_paginate .paginate_button.disabled{
     opacity:.4;
     cursor:not-allowed;
+}
+
+/* MODAL TAMBAH*/
+.produk-modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(255,240,246,.38);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    padding: 24px;
+}
+
+.produk-modal.active{
+    display: flex;
+}
+
+.produk-modal-box{
+    width: 700px;
+    max-width: 92vw;
+    max-height: 88vh;
+    overflow-y: auto;
+    background: rgba(255,248,250,.96);
+    border-radius: 32px;
+    padding: 32px 36px;
+    position: relative;
+    box-shadow: 0 24px 70px rgba(255,150,180,.25);
+}
+
+.produk-modal-header{
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.produk-modal-logo{
+    width: 90px;
+    margin-bottom: 8px;
+}
+
+.produk-modal-header h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #4b2f28;
+    margin-bottom: 6px;
+}
+
+.produk-modal-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 18px;
+}
+
+.produk-modal .produk-full{
+    grid-column: 1 / -1;
+}
+
+.produk-modal .produk-input-group input,
+.produk-modal .produk-input-group select,
+.produk-modal .produk-input-group textarea{
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 15px;
+}
+
+.produk-modal .produk-input-group textarea{
+    height: 70px;
+}
+
+.close-admin-profile, 
+.close-produk-modal{
+    position: absolute;
+    top: 20px;
+    right: 22px;
+}
+
+/* SCROLL */
+
+.produk-modal-box::-webkit-scrollbar{
+    width: 8px;
+}
+
+/* CLOSE */
+
+.close-admin-profile,
+.close-produk-modal{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #f7cfa8;
+    color: #f5890e;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.close-admin-profile:hover,
+.close-produk-modal:hover{
+    background: #f98806;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* HEADER */
+.produk-modal-logo{
+    width: 150px;
+    margin-bottom: 14px;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 12px 18px rgba(255,170,200,.22));
+}
+
+.produk-modal-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 22px;
+}
+
+.produk-full{
+    grid-column: span 2;
+}
+
+/* INPUT */
+.produk-input-group label{
+    display: block;
+    margin-bottom: 8px;
+    color: #5a392c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.produk-input-group input,
+.produk-input-group select,
+.produk-input-group textarea{
+    width: 100%;
+
+    border: 1px solid rgba(199,130,107,.24);
+
+    background: rgba(255,255,255,.82);
+
+    border-radius: 16px;
+
+    padding: 13px 15px;
+
+    outline: none;
+
+    color: #4b2f28;
+
+    transition: .3s ease;
+}
+
+.produk-input-group textarea{
+    height: 82px;
+    resize: none;
+}
+
+.produk-input-group input:focus,
+.produk-input-group select:focus,
+.produk-input-group textarea:focus{
+    border-color: #ef9eb8;
+
+    box-shadow:
+        0 0 0 4px rgba(239,158,184,.13);
+}
+
+/* BUTTON */
+
+.admin-save-btn,
+.produk-submit-btn{
+    width: 100%;
+    height: 54px;
+
+    border: none;
+    border-radius: 18px;
+
+    margin-top: 28px;
+
+    background:linear-gradient(135deg,#ff8c2f,#d95b00);
+    color:white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+        0 18px 34px rgba(199,130,107,.22);
+
+    transition: .3s ease;
+}
+
+.admin-save-btn:hover,
+.produk-submit-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,140,47,.3);
 }

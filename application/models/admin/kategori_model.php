@@ -23,17 +23,17 @@ class kategori_model extends CI_Model {
         return $this->db->insert($this->table,$data);
     }
 
-    public function update($id,$data)
+    public function update($id_kategori,$data)
     {
         return $this->db
-            ->where('id_kategori',$id)
+            ->where('id_kategori',$id_kategori)
             ->update($this->table,$data);
     }
 
-    public function delete($id)
+    public function delete($id_kategori)
     {
         return $this->db
-            ->where('id_kategori',$id)
+            ->where('id_kategori',$id_kategori)
             ->delete($this->table);
     }
 

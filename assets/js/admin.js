@@ -65,14 +65,6 @@ function closeModal(id){
     document.getElementById(id).classList.remove('show');
 }
 
-function editKategori(id,nama){
-
-    document.getElementById('edit_id_kategori').value = id;
-    document.getElementById('edit_nama_kategori').value = nama;
-
-    openModal('modalEditKategori');
-}
-
 /* DELETE MODAL */
     const deleteModal = document.getElementById("deleteModal");
     const closeDeleteModal = document.getElementById("closeDeleteModal");
@@ -103,7 +95,7 @@ function editKategori(id,nama){
         });
     }
 
-
+/*PAGINATION*/
 $(document).ready(function(){
     $('#project-datatable').DataTable({
     pageLength: 5,
@@ -137,3 +129,73 @@ $(document).ready(function(){
     });
 
 });
+
+/* TAMBAH MODAL*/
+    const openCustomModal = document.getElementById('openCustomModal');
+    const closeCustomModal = document.getElementById('closeCustomModal');
+    const customModal = document.getElementById('customModal');
+
+    if(openCustomModal && closeCustomModal && customModal){
+        openCustomModal.addEventListener('click', function(e){
+            e.preventDefault();
+            customModal.classList.add('active');
+        });
+
+        closeCustomModal.addEventListener('click', function(){
+            customModal.classList.remove('active');
+        });
+
+        customModal.addEventListener('click', function(e){
+            if(e.target === customModal){
+                customModal.classList.remove('active');
+            }
+        });
+    }
+
+/* ==========================
+   MODAL EDIT KATEGORI
+========================== */
+
+const editModal = document.getElementById("editCustomModal");
+const closeEditModal = document.getElementById("closeEditCustomModal");
+
+document.querySelectorAll(".open-edit-modal").forEach(btn => {
+
+    btn.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        document.getElementById("edit_id").value = this.dataset.id;
+        document.getElementById("edit_kode").value = this.dataset.kode;
+        document.getElementById("edit_nama").value = this.dataset.nama;
+        document.getElementById("edit_deskripsi").value = this.dataset.deskripsi;
+        document.getElementById("edit_status").value = this.dataset.status;
+
+        editModal.classList.add("active");
+    });
+
+});
+
+if(closeEditModal){
+
+    closeEditModal.addEventListener("click", function(){
+
+        editModal.classList.remove("active");
+
+    });
+
+}
+
+if(editModal){
+
+    editModal.addEventListener("click", function(e){
+
+        if(e.target === editModal){
+
+            editModal.classList.remove("active");
+
+        }
+
+    });
+
+}

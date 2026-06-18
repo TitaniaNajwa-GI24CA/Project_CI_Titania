@@ -62,7 +62,6 @@ $route['kategori-produk'] = 'admin/kategori';
 $route['kategori-produk/tambah'] = 'admin/kategori/store';
 $route['kategori-produk/update'] = 'admin/kategori/update';
 $route['kategori-produk/delete/(:num)'] = 'admin/kategori/delete/$1';
-
 $route['data-produk'] = 'admin/produk';
 $route['data-pelanggan'] = 'admin/pelanggan';
 $route['data-sales'] = 'admin/sales';
