@@ -31,7 +31,7 @@ class kategori extends CI_Controller {
     public function simpan()
     {
         $this->kategori_model->insert([
-            'kode_kategori' => $this->input->post('kode_kategori'),
+            'kode_kategori' => $this->kategori_model->generate_kode_kategori(),
             'nama_kategori' => $this->input->post('nama_kategori'),
             'deskripsi' => $this->input->post('deskripsi'),
             'status' => $this->input->post('status')

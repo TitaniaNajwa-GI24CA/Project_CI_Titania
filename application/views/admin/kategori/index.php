@@ -27,7 +27,7 @@
                         <td><?= $row->nama_kategori ?></td>
                         <td><?= $row->deskripsi?></td>
                         <td>
-                            <span class="status-badge <?= strtolower($row->status); ?>"><?= $row->status; ?></span>
+                            <span class="status-badge" <?= strtolower($row->status); ?>"><?= $row->status; ?></span>
                         </td>
                         <td>
                             <div class="table-action">
@@ -78,26 +78,22 @@
         <form action="<?= base_url('admin/kategori/simpan'); ?>" method="post" enctype="multipart/form-data">
             <div class="produk-modal-grid">
                 <div class="produk-input-group">
-                    <label>Kode Kategori</label>
-                    <input type="text" name="kode_kategori" required>
-                </div>
-
-                <div class="produk-input-group">
                     <label>Nama Kategori</label>
                     <input type="text" name="nama_kategori" required>
                 </div>
 
                 <div class="produk-input-group">
-                    <label>Deskripsi</label>
-                    <input type="text" name="deskripsi" required>
-                </div>
-
-                <div class="produk-input-group">
                     <label>Status Kategori</label>
                     <select name="status" required>
+                        <option value="">-- Pilih Status --</option>
                         <option value="Aktif">Aktif</option>
                         <option value="Nonaktif">Nonaktif</option>
                     </select>
+                </div>
+
+                <div class="produk-input-group produk-full">
+                    <label>Deskripsi</label>
+                     <textarea name="deskripsi"></textarea>
                 </div>
             </div>
 

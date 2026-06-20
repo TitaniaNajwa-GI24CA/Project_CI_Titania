@@ -8,7 +8,7 @@ class kategori_model extends CI_Model {
     public function get_all()
     {
         return $this->db
-            ->order_by('id_kategori','DESC')
+            ->order_by('id_kategori','ASC')
             ->get($this->table)
             ->result();
     }
@@ -43,5 +43,23 @@ class kategori_model extends CI_Model {
             ->limit($limit, $start)
             ->get('tbl_kategori_produk')
             ->result();
+    }
+
+    public function generate_kode_kategori()
+    {
+        $this->db->select('RIGHT(kode_kategori,3) as kode', FALSE);
+        $this->db->order_by('id_kategori', 'DESC');
+        $this->db->limit(1);
+
+        $query = $this->db->get('tbl_kategori_produk');
+
+        if($query->num_rows() > 0){
+            $data = $query->row();
+            $kode = intval($data->kode) + 1;
+        }else{
+            $kode = 1;
+        }
+
+        return 'KTG' . str_pad($kode, 3, '0', STR_PAD_LEFT);
     }
 }

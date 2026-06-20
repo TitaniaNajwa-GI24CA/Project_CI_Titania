@@ -109,7 +109,7 @@ $(document).ready(function(){
 
     language:{
         search:"",
-        searchPlaceholder:"Cari kategori produk...",
+        searchPlaceholder:"Cari Data...",
         lengthMenu:"Tampilkan _MENU_ data",
         info:"Menampilkan _START_ - _END_ dari _TOTAL_ data",
         paginate:{
@@ -128,6 +128,32 @@ $(document).ready(function(){
 
     });
 
+});
+
+$(document).ready(function(){
+        if($('.order-page').length){
+            $('.dataTables_filter').append(`
+                <select id="filterBulan" class="filter-select">
+                    <option value="">Semua Bulan</option>
+                    <option value="Jan">Januari</option>
+                    <option value="Feb">Februari</option>
+                    <option value="Mar">Maret</option>
+                    <option value="Apr">April</option>
+                    <option value="May">Mei</option>
+                    <option value="Jun">Juni</option>
+                    <option value="Jul">Juli</option>
+                    <option value="Aug">Agustus</option>
+                    <option value="Sep">September</option>
+                    <option value="Oct">Oktober</option>
+                    <option value="Nov">November</option>
+                    <option value="Dec">Desember</option>
+                </select>
+            `);
+
+            $('#filterBulan').on('change', function(){
+                table.column(1).search($(this).val()).draw();
+            });
+        }
 });
 
 /* TAMBAH MODAL*/
@@ -199,3 +225,319 @@ if(editModal){
     });
 
 }
+
+/* ==========================
+   MODAL EDIT PRODUK
+========================== */
+
+const editProdukModal = document.getElementById("editProdukModal");
+const closeEditProdukModal = document.getElementById("closeEditProdukModal");
+
+document.querySelectorAll(".open-edit-produk").forEach(btn => {
+
+    btn.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        if(document.getElementById("edit_id_produk")){
+            document.getElementById("edit_id_produk").value =
+                this.dataset.id || '';
+        }
+
+        if(document.getElementById("edit_id_kategori")){
+            document.getElementById("edit_id_kategori").value =
+                this.dataset.id_kategori || '';
+        }
+
+        if(document.getElementById("edit_kode_produk")){
+            document.getElementById("edit_kode_produk").value =
+                this.dataset.kode || '';
+        }
+
+        if(document.getElementById("edit_nama_produk")){
+            document.getElementById("edit_nama_produk").value =
+                this.dataset.nama || '';
+        }
+
+        if(document.getElementById("edit_harga")){
+            document.getElementById("edit_harga").value =
+                this.dataset.harga || '';
+        }
+
+        if(document.getElementById("edit_stok")){
+            document.getElementById("edit_stok").value =
+                this.dataset.stok || '';
+        }
+
+        if(document.getElementById("edit_deskripsi")){
+            document.getElementById("edit_deskripsi").value =
+                this.dataset.deskripsi || '';
+        }
+
+        if(editProdukModal){
+            editProdukModal.classList.add("show");
+        }
+
+    });
+
+});
+
+if(closeEditProdukModal){
+
+    closeEditProdukModal.addEventListener("click", function(){
+
+        if(editProdukModal){
+            editProdukModal.classList.remove("show");
+        }
+
+    });
+
+}
+
+window.addEventListener("click", function(e){
+
+    if(e.target === editProdukModal){
+        editProdukModal.classList.remove("show");
+    }
+
+});
+
+/* ==========================
+   EDIT PELANGGAN
+========================== */
+
+const editPelangganModal =
+document.getElementById("editPelangganModal");
+
+const closeEditPelangganModal =
+document.getElementById("closeEditPelangganModal");
+
+document.querySelectorAll(".open-edit-pelanggan")
+.forEach(btn => {
+
+    btn.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        document.getElementById("edit_id_pelanggan").value =
+            this.dataset.id;
+
+        document.getElementById("edit_kode_pelanggan").value =
+            this.dataset.kode;
+
+        document.getElementById("edit_nama_pelanggan").value =
+            this.dataset.nama;
+
+        document.getElementById("edit_jenis_kelamin").value =
+            this.dataset.jk;
+
+        document.getElementById("edit_no_telp").value =
+            this.dataset.telp;
+
+        document.getElementById("edit_email").value =
+            this.dataset.email;
+
+         document.getElementById("edit_jenis_pelanggan").value =
+            this.dataset.jp;
+
+        document.getElementById("edit_alamat").value =
+            this.dataset.alamat;
+
+        editPelangganModal.classList.add("show");
+
+    });
+
+});
+
+if(closeEditPelangganModal){
+
+    closeEditPelangganModal.addEventListener("click", function(){
+
+        editPelangganModal.classList.remove("show");
+
+    });
+
+}
+
+const editOrderModal = document.getElementById("editOrderModal");
+const closeEditOrderModal = document.getElementById("closeEditOrderModal");
+
+document.querySelectorAll(".open-edit-order").forEach(btn => {
+
+    btn.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        document.getElementById("edit_id_order").value =
+            this.dataset.id;
+
+        document.getElementById("edit_kode_order").value =
+            this.dataset.kode;
+
+        document.getElementById("edit_status_order").value =
+            this.dataset.status;
+
+        editOrderModal.classList.add("show");
+
+    });
+
+});
+
+if(closeEditOrderModal){
+    closeEditOrderModal.addEventListener("click", function(){
+        editOrderModal.classList.remove("show");
+    });
+}
+
+window.addEventListener("click", function(e){
+    if(e.target === editOrderModal){
+        editOrderModal.classList.remove("show");
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    const submenuButtons = document.querySelectorAll('.has-submenu');
+
+    submenuButtons.forEach(button => {
+
+        button.addEventListener('click', function(e){
+
+            e.preventDefault();
+
+            const parent = this.closest('.menu-group');
+            const submenu = parent.querySelector('.submenu');
+
+            document.querySelectorAll('.menu-group').forEach(item => {
+
+                if(item !== parent){
+
+                    item.querySelector('.has-submenu')
+                        ?.classList.remove('active');
+
+                    item.querySelector('.submenu')
+                        ?.classList.remove('show');
+
+                }
+
+            });
+            this.classList.toggle('active');
+            submenu.classList.toggle('show');
+
+        });
+
+    });
+
+});
+
+document.querySelectorAll('.open-edit-sales').forEach(btn => {
+    btn.addEventListener('click', function(e){
+        e.preventDefault();
+
+        document.getElementById('edit_id_sales').value =
+            this.dataset.id;
+
+        document.getElementById('edit_kode_sales').value =
+            this.dataset.kode;
+
+        document.getElementById('edit_nama_sales').value =
+            this.dataset.nama;
+
+        document.getElementById('edit_no_telp').value =
+            this.dataset.telp;
+
+        document.getElementById('edit_email_sales').value =
+            this.dataset.email;
+
+        document.getElementById('edit_alamat_sales').value =
+            this.dataset.alamat;
+
+        document.getElementById('edit_status_sales').value =
+            this.dataset.status;
+
+        document.getElementById('editSalesModal')
+            .classList.add('show');
+
+    });
+
+});
+
+document.getElementById('closeEditSalesModal')
+?.addEventListener('click', function(){
+
+    document.getElementById('editSalesModal')
+        .classList.remove('show');
+
+});
+
+
+document
+.querySelectorAll('.open-edit-pembayaran')
+.forEach(btn => {
+
+    btn.addEventListener('click', function(e){
+
+        e.preventDefault();
+
+        document.getElementById(
+            'edit_id_pembayaran'
+        ).value = this.dataset.id;
+
+        document.getElementById(
+            'edit_tanggal'
+        ).value = this.dataset.tanggal;
+
+        document.getElementById(
+            'edit_metode'
+        ).value = this.dataset.metode;
+
+        document.getElementById(
+            'edit_status_bayar'
+        ).value = this.dataset.status;
+
+        document
+        .getElementById('editPembayaranModal')
+        .classList.add('show');
+    });
+
+});
+
+document.getElementById('closeEditPembayaranModal')
+?.addEventListener('click', function(){
+
+    document.getElementById('editPembayaranModal')
+        .classList.remove('show');
+
+});
+
+$(document).ready(function(){
+    $('#laporan-datatable').DataTable({
+    pageLength: 5,
+    responsive: true,
+    autoWidth: false,
+
+    dom:
+    "<'top'lf>" +
+    "rt" +
+    "<'bottom'ip>",
+
+    language:{
+        lengthMenu:"Tampilkan _MENU_ data",
+        info:"Menampilkan _START_ - _END_ dari _TOTAL_ data",
+        paginate:{
+            previous:"<",
+            next:">"
+        },
+            zeroRecords:
+                "Data tidak ditemukan",
+
+            infoEmpty:
+                "Tidak ada data",
+
+            infoFiltered:
+                "(difilter dari _MAX_ data)"
+        }
+
+    });
+
+});

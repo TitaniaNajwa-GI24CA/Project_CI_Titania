@@ -63,8 +63,15 @@ $route['kategori-produk/tambah'] = 'admin/kategori/store';
 $route['kategori-produk/update'] = 'admin/kategori/update';
 $route['kategori-produk/delete/(:num)'] = 'admin/kategori/delete/$1';
 $route['data-produk'] = 'admin/produk';
+$route['data-produk/update'] = 'admin/produk/update';
 $route['data-pelanggan'] = 'admin/pelanggan';
 $route['data-sales'] = 'admin/sales';
 $route['data-order'] = 'admin/order';
-
 $route['laporan'] = 'admin/laporan';
+$route['sales'] = 'admin/sales';
+$route['sales/tambah'] = 'admin/sales/simpan';
+$route['sales/update'] = 'admin/sales/update';
+$route['sales/delete/(:num)'] = 'admin/sales/delete/$1';
+$route['laporan-penjualan'] = 'admin/laporan_penjualan';
+$route['laporan-penjualan/excel'] = 'admin/laporan_penjualan/export_excel';
+$route['laporan-penjualan/pdf'] = 'admin/laporan_penjualan/export_pdf';
