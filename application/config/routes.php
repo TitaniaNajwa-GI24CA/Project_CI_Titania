@@ -75,3 +75,6 @@ $route['sales/delete/(:num)'] = 'admin/sales/delete/$1';
 $route['laporan-penjualan'] = 'admin/laporan_penjualan';
 $route['laporan-penjualan/excel'] = 'admin/laporan_penjualan/export_excel';
 $route['laporan-penjualan/pdf'] = 'admin/laporan_penjualan/export_pdf';
+$route['admin/laporan-stok'] = 'admin/laporan_stok';
+$route['laporan-stok/excel'] = 'admin/laporan_stok/export_excel';
+$route['laporan-stok/pdf'] = 'admin/laporan_stok/export_pdf';

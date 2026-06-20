@@ -1782,3 +1782,72 @@ ul{
 .btn-pdf:hover{
     background:#b91c1c;
 }
+
+/* ==========================
+   BADGE STATUS STOK
+========================== */
+
+.badge-stok-aman,
+.badge-stok-warning,
+.badge-stok-habis{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:12px;
+    font-weight:600;
+
+    min-width:110px;
+
+    letter-spacing:.3px;
+}
+
+/* AMAN */
+
+.badge-stok-aman{
+    background:#e8f8ec;
+    color:#1f7a3f;
+    border:1px solid #b9e8c7;
+}
+
+/* MENIPIS */
+
+.badge-stok-warning{
+    background:#fff3df;
+    color:#c67a00;
+    border:1px solid #ffd89c;
+}
+
+/* HAMPIR HABIS */
+
+.badge-stok-habis{
+    background:#ffe5df;
+    color:#d9480f;
+    border:1px solid #ffb8a6;
+}
+
+.badge-stok-aman::before,
+.badge-stok-warning::before,
+.badge-stok-habis::before{
+    content:'';
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    margin-right:8px;
+}
+
+.badge-stok-aman::before{
+    background:#22c55e;
+}
+
+.badge-stok-warning::before{
+    background:#f59e0b;
+}
+
+.badge-stok-habis::before{
+    background:#ef4444;
+}
