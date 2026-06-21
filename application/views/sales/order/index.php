@@ -32,7 +32,7 @@
                     </td>
 
                     <td>
-                        Rp <?= number_format($row->total_harga,0,',','.'); ?>
+                        Rp <?= number_format($row->total_order,0,',','.'); ?>
                     </td>
 
                     <td>
@@ -59,85 +59,25 @@
                             </span>
 
                         <?php else: ?>
-
                             <span class="badge-batal">
                                 <i class="fa-solid fa-circle-xmark"></i>
                                 Dibatalkan
                             </span>
-
                         <?php endif; ?>
 
                     </td>
 
                     <td>
                         <div class="table-action">
-
-                            <a href="#"
-                                class="edit-btn open-edit-order"
-                                data-id="<?= $row->id_order; ?>"
-                                data-kode="<?= $row->kode_order; ?>"
-                                data-status="<?= $row->status; ?>">
-                                <i class="fa-solid fa-pen"></i>
+                            <a href="<?= base_url('sales/detail-order/'.$row->id_order); ?>"
+                            class="view-btn">
+                                <i class="fa-solid fa-eye"></i>
                             </a>
-
                         </div>
                     </td>
                 </tr>
                 <?php endforeach; ?>
                 </tbody>
         </table>
-    </div>
-</div>
-
-<div class="produk-modal" id="editOrderModal">
-    <div class="produk-modal-box">
-
-        <button class="close-produk-modal" id="closeEditOrderModal">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <div class="produk-modal-header">
-            <h3>Update Status Order</h3>
-            <p>Perbarui status transaksi.</p>
-        </div>
-
-        <form action="<?= base_url('admin/order/update_status'); ?>" method="post">
-
-            <input type="hidden" name="id_order" id="edit_id_order">
-
-            <div class="produk-modal-grid">
-
-                <div class="produk-input-group">
-                    <label>Kode Order</label>
-                    <input type="text"
-                           id="edit_kode_order"
-                           readonly>
-                </div>
-
-                <div class="produk-input-group">
-                    <label>Status</label>
-
-                    <select name="status"
-                            id="edit_status_order"
-                            required>
-
-                        <option value="pending">Pending</option>
-                        <option value="dikirim">Dikirim</option>
-                        <option value="selesai">Selesai</option>
-                        <option value="dibatalkan">Dibatalkan</option>
-
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="modal-footer-custom">
-                <button type="submit" class="produk-submit-btn">
-                    Update Status
-                </button>
-            </div>
-
-        </form>
-
     </div>
 </div>

@@ -21,21 +21,43 @@ class dashboard extends CI_Controller {
     public function index()
     {
         $id_user = $this->session->userdata('id_user');
+        $sales = $this->dashboard_model->get_sales_by_user($id_user);
+        $id_sales = $sales->id_sales;
         $data['title'] = 'Dashboard';
-        $data['page_title'] = 'Dashboard';
-        $data['page_subtitle'] = 'Selamat datang kembali, '.$this->session->userdata('nama_user').' ✨';
-        $data['user_profile'] = $this->dashboard_model->get_user_profile($id_user);
-        $data['total_produk']     = $this->dashboard_model->total_produk();
-        $data['total_pelanggan']  = $this->dashboard_model->total_pelanggan();
-        $data['total_order']      = $this->dashboard_model->total_order();
-        $data['total_pendapatan'] = $this->dashboard_model->total_pendapatan();
-        $data['grafik_pendapatan'] = $this->dashboard_model->grafik_pendapatan();
-        $data['kategori_terjual']  = $this->dashboard_model->kategori_terjual();
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/layouts/topbar', $data);
-        $this->load->view('admin/dashboard', $data);
-        $this->load->view('admin/layouts/footer', $data);
+        $data['page_title'] = 'Dashboard Sales';
+        $data['page_subtitle'] =
+            'Selamat datang kembali, ' .
+            $this->session->userdata('nama_user') .
+            ' ✨';
+        $data['user_profile'] =
+            $this->dashboard_model
+            ->get_user_profile($id_user);
+        $data['total_order'] =
+            $this->dashboard_model
+            ->total_order($id_sales);
+        $data['total_penjualan'] =
+            $this->dashboard_model
+            ->total_penjualan($id_sales);
+        $data['total_pelanggan'] =
+            $this->dashboard_model
+            ->total_pelanggan($id_sales);
+        $data['total_produk_terjual'] =
+            $this->dashboard_model
+            ->total_produk_terjual($id_sales);
+        $data['order_terbaru'] =
+            $this->dashboard_model
+            ->order_terbaru($id_sales);
+        $data['grafik_penjualan'] =
+            $this->dashboard_model
+            ->grafik_penjualan($id_sales);
+        $data['produk_terlaris'] =
+            $this->dashboard_model
+            ->produk_terlaris($id_sales);
+        $this->load->view('sales/layouts/header',$data);
+        $this->load->view('sales/layouts/sidebar',$data);
+        $this->load->view('sales/layouts/topbar',$data);
+        $this->load->view('sales/dashboard',$data);
+        $this->load->view('sales/layouts/footer',$data);
     }
 
     public function update_profile()
@@ -69,7 +91,7 @@ class dashboard extends CI_Controller {
                 $data_user['foto_profil'] = $upload_data['file_name'];
             } else {
                 $this->session->set_flashdata('error', $this->upload->display_errors());
-                redirect('admin/dashboard');
+                redirect('sales/dashboard');
             }
         }
 
@@ -84,6 +106,6 @@ class dashboard extends CI_Controller {
         ]);
 
         $this->session->set_flashdata('success', 'Profile berhasil diperbarui ✨');
-        redirect('admin/dashboard');
+        redirect('sales/dashboard');
     }
 }

@@ -98,23 +98,22 @@
             <p>Tambahkan data pembayaran baru.</p>
         </div>
 
-        <form action="<?= base_url('admin/pembayaran/simpan'); ?>" method="post">
+        <form action="<?= base_url('sales/pembayaran/simpan'); ?>" method="post">
             <div class="produk-modal-grid">
 
                 <div class="produk-input-group">
                     <label>Order</label>
                     <select name="id_order" required>
-                        <option value="">
-                            -- Pilih Order --
-                        </option>
-                        <?php foreach($order as $o): ?>
-
-                        <option value="<?= $o->id_order; ?>">
-                            <?= $o->kode_order; ?>
-                        </option>
-
-                        <?php endforeach; ?>
-
+                        <option value="" disabled selected>-- Pilih Order --</option>
+                        <?php if(!empty($order)): ?>
+                            <?php foreach($order as $o): ?>
+                                <option value="<?= $o->id_order; ?>">
+                                    <?= $o->kode_order; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <option disabled>Tidak ada order</option>
+                        <?php endif; ?>
                     </select>
                 </div>
 

@@ -33,10 +33,10 @@ class order extends CI_Controller {
     public function update_status()
     {
         $id_order = $this->input->post('id_order');
-        $status = $this->input->post('status_order');
+        $status = $this->input->post('status');
 
         $this->order_model->update($id_order,[
-            'status_order' => $status
+            'status' => $status
         ]);
 
         if($status == 'Dikirim')

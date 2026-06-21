@@ -8,7 +8,7 @@ class laporan_penjualan_model extends CI_Model {
         $this->db->select('
             tbl_order.kode_order,
             tbl_order.tanggal_order,
-            tbl_order.total_harga,
+            tbl_order.total_order,
             tbl_pelanggan.nama_pelanggan,
             tbl_sales.nama_sales
         ');
@@ -63,7 +63,7 @@ class laporan_penjualan_model extends CI_Model {
 
     public function sum_penjualan($bulan = null, $tahun = null, $id_sales = null)
     {
-        $this->db->select_sum('total_harga');
+        $this->db->select_sum('total_order');
         $this->db->from('tbl_order');
 
         if ($bulan) {
@@ -80,8 +80,8 @@ class laporan_penjualan_model extends CI_Model {
 
         $result = $this->db->get()->row();
 
-        return !empty($result->total_harga)
-            ? $result->total_harga
+        return !empty($result->total_order)
+            ? $result->total_order
             : 0;
     }
 

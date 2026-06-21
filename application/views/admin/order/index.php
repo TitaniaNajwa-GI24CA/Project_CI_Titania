@@ -32,7 +32,7 @@
                     </td>
 
                     <td>
-                        Rp <?= number_format($row->total_harga,0,',','.'); ?>
+                        Rp <?= number_format($row->total_order,0,',','.'); ?>
                     </td>
 
                     <td>

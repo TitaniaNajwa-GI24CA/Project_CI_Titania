@@ -541,3 +541,146 @@ $(document).ready(function(){
     });
 
 });
+
+document.getElementById('btnTambahProduk').addEventListener('click', function () {
+
+    const container = document.getElementById('detail-order');
+    const row = document.createElement('tr');
+
+    let options = '<option value="">Pilih Produk</option>';
+
+    produkData.forEach(p => {
+        options += `
+            <option value="${p.id_produk}"
+                data-harga="${p.harga}"
+                data-stok="${p.stok}">
+                ${p.nama_produk}
+            </option>
+        `;
+    });
+
+    row.innerHTML = `
+        <td>
+            <select name="id_produk[]" class="produk-select">
+                ${options}
+            </select>
+        </td>
+
+        <td><input type="number" name="harga[]" class="harga" readonly></td>
+        <td><input type="number" name="qty[]" class="qty" min="1"></td>
+        <td><input type="number" name="subtotal[]" class="subtotal" readonly></td>
+        <td>
+            <button type="button" class="hapus-row">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </td>
+    `;
+
+    container.appendChild(row);
+});
+
+document.addEventListener('click', function(e){
+
+    if(
+        e.target.closest('.hapus-row')
+    ){
+        e.target
+        .closest('tr')
+        .remove();
+
+        hitungGrandTotal();
+    }
+
+});
+
+document.addEventListener('change', function(e){
+
+    if(
+        e.target.classList.contains(
+            'produk-select'
+        )
+    ){
+
+        const harga =
+            e.target.options[
+                e.target.selectedIndex
+            ].dataset.harga;
+
+        const row =
+            e.target.closest('tr');
+
+        row.querySelector('.harga')
+           .value = harga;
+
+        hitungSubtotal(row);
+    }
+
+});
+
+document.addEventListener('input', function(e){
+
+    if(
+        e.target.classList.contains(
+            'qty'
+        )
+    ){
+
+        const row =
+            e.target.closest('tr');
+
+        hitungSubtotal(row);
+    }
+
+});
+
+function hitungSubtotal(row)
+{
+    let harga =
+        parseFloat(
+            row.querySelector('.harga').value
+        ) || 0;
+
+    let qty =
+        parseFloat(
+            row.querySelector('.qty').value
+        ) || 0;
+
+    let subtotal =
+        harga * qty;
+
+    row.querySelector('.subtotal')
+       .value = subtotal;
+
+    hitungGrandTotal();
+}
+
+function hitungGrandTotal()
+{
+    let total = 0;
+
+    document
+    .querySelectorAll('.subtotal')
+    .forEach(function(item){
+
+        total +=
+            parseFloat(item.value) || 0;
+
+    });
+
+    document
+    .getElementById('grand_total')
+    .value =
+        total.toLocaleString('id-ID');
+}
+
+function closeModal(){
+    document.getElementById('successModal').style.display = 'none';
+}
+
+document.addEventListener('click', function(e){
+    if(e.target.closest('.hapus-row')){
+        e.preventDefault();
+        e.target.closest('tr').remove();
+        hitungGrandTotal();
+    }
+});

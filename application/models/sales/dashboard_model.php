@@ -10,63 +10,181 @@ class dashboard_model extends CI_Model {
         ])->row();
     }
 
+    public function get_sales_by_user($id_user)
+    {
+        return $this->db
+            ->get_where(
+                'tbl_sales',
+                ['id_user' => $id_user]
+            )
+            ->row();
+    }
+
     public function update_profile($id_user, $data)
     {
         $this->db->where('id_user', $id_user);
         return $this->db->update('tbl_users', $data);
     }
 
-    public function total_produk()
+    public function total_order($id_sales)
     {
-        return $this->db->count_all('tbl_produk');
+        return $this->db
+            ->where('id_sales',$id_sales)
+            ->count_all_results('tbl_order');
     }
 
-    public function total_pelanggan()
+   public function total_pelanggan($id_sales)
     {
-        return $this->db->count_all('tbl_pelanggan');
+        $this->db->select(
+            'COUNT(DISTINCT id_pelanggan)
+            as total'
+        );
+
+        $this->db->where(
+            'id_sales',
+            $id_sales
+        );
+
+        return $this->db
+            ->get('tbl_order')
+            ->row()
+            ->total;
     }
 
-    public function total_order()
+    public function total_penjualan($id_sales)
     {
-        return $this->db->count_all('tbl_order');
+        $this->db->select_sum('total_order');
+
+        $this->db->where(
+            'id_sales',
+            $id_sales
+        );
+
+        $result =
+            $this->db
+            ->get('tbl_order')
+            ->row();
+
+        return $result->total_order ?? 0;
     }
 
-    public function total_pendapatan()
+    public function total_produk_terjual($id_sales)
     {
-        $this->db->select_sum('total_harga');
-        $this->db->where('status', 'selesai');
+        $this->db->select_sum(
+            'tbl_detail_order.qty'
+        );
 
-        $query = $this->db->get('tbl_order')->row();
+        $this->db->from(
+            'tbl_detail_order'
+        );
 
-        return $query->total_harga ?? 0;
+        $this->db->join(
+            'tbl_order',
+            'tbl_order.id_order =
+            tbl_detail_order.id_order'
+        );
+
+        $this->db->where(
+            'tbl_order.id_sales',
+            $id_sales
+        );
+
+        $result =
+            $this->db->get()->row();
+
+        return $result->qty ?? 0;
     }
 
-    public function grafik_pendapatan()
+    public function order_terbaru($id_sales)
     {
-        $this->db->select("
-            DATE_FORMAT(tanggal_order, '%M') AS bulan,
-            SUM(total_harga) AS total
-        ");
+        $this->db->select('
+            tbl_order.*,
+            tbl_pelanggan.nama_pelanggan
+        ');
+
         $this->db->from('tbl_order');
-        $this->db->where('status', 'selesai');
-        $this->db->group_by("MONTH(tanggal_order)");
-        $this->db->order_by("MONTH(tanggal_order)", "ASC");
+
+        $this->db->join(
+            'tbl_pelanggan',
+            'tbl_pelanggan.id_pelanggan =
+            tbl_order.id_pelanggan'
+        );
+
+        $this->db->where(
+            'tbl_order.id_sales',
+            $id_sales
+        );
+
+        $this->db->order_by(
+            'tbl_order.id_order',
+            'DESC'
+        );
+
+        $this->db->limit(5);
 
         return $this->db->get()->result();
     }
 
-    public function kategori_terjual()
+    public function grafik_penjualan($id_sales)
     {
         $this->db->select("
-            tbl_kategori_produk.nama_kategori,
-            SUM(tbl_detail_order.qty) AS total_terjual
+            MONTH(tanggal_order) as bulan,
+            SUM(total_order) as total
         ");
-        $this->db->from('tbl_detail_order');
-        $this->db->join('tbl_produk', 'tbl_produk.id_produk = tbl_detail_order.id_produk');
-        $this->db->join('tbl_kategori_produk', 'tbl_kategori_produk.id_kategori = tbl_produk.id_kategori');
-        $this->db->join('tbl_order', 'tbl_order.id_order = tbl_detail_order.id_order');
-        $this->db->where('tbl_order.status', 'selesai');
-        $this->db->group_by('tbl_kategori_produk.id_kategori');
+
+        $this->db->from('tbl_order');
+
+        $this->db->where(
+            'id_sales',
+            $id_sales
+        );
+
+        $this->db->group_by(
+            'MONTH(tanggal_order)'
+        );
+
+        return $this->db->get()->result();
+    }
+
+    public function produk_terlaris($id_sales)
+    {
+        $this->db->select('
+            tbl_produk.nama_produk,
+            SUM(tbl_detail_order.qty)
+            as total_terjual
+        ');
+
+        $this->db->from(
+            'tbl_detail_order'
+        );
+
+        $this->db->join(
+            'tbl_order',
+            'tbl_order.id_order =
+            tbl_detail_order.id_order'
+        );
+
+        $this->db->join(
+            'tbl_produk',
+            'tbl_produk.id_produk =
+            tbl_detail_order.id_produk'
+        );
+
+        $this->db->where(
+            'tbl_order.id_sales',
+            $id_sales
+        );
+
+        $this->db->group_by(
+            'tbl_produk.id_produk'
+        );
+
+        $this->db->order_by(
+            'total_terjual',
+            'DESC'
+        );
+
+        $this->db->limit(5);
 
         return $this->db->get()->result();
     }
