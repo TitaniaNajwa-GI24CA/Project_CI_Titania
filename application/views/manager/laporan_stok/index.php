@@ -53,7 +53,7 @@
     </div>
 
     <div class="filter-action">
-        <a href="<?= base_url('admin/laporan_stok/export_excel?'.http_build_query($_GET)); ?>"
+        <a href="<?= base_url('manager/laporan_stok/export_excel?'.http_build_query($_GET)); ?>"
             class="btn-excel">
                 <i class="fa-solid fa-file-excel"></i>
                 Export Excel
@@ -61,7 +61,7 @@
     </div>
 
     <div class="filter-action">
-        <a href="<?= base_url('admin/laporan_stok/print_laporan?'.http_build_query($_GET)); ?>"
+        <a href="<?= base_url('manager/laporan_stok/print_laporan?'.http_build_query($_GET)); ?>"
             target="_blank"
             class="btn-pdf">
                 <i class="fa-solid fa-print"></i>

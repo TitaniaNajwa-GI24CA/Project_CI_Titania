@@ -84,4 +84,66 @@ class order_model extends CI_Model {
         return $kode;
     }
 
+    public function get_produk_by_order($id_order)
+    {
+        $this->db->select('
+            tbl_detail_order.*,
+            tbl_produk.nama_produk,
+            tbl_produk.harga AS harga_produk,
+            tbl_produk.gambar
+        ');
+
+        $this->db->from('tbl_detail_order');
+
+        $this->db->join(
+            'tbl_produk',
+            'tbl_produk.id_produk = tbl_detail_order.id_produk',
+            'left'
+        );
+
+        $this->db->where('tbl_detail_order.id_order', $id_order);
+
+        return $this->db->get()->result();
+    }
+
+    public function get_order_detail($id_order)
+    {
+        $this->db->select('
+            d.qty,
+            d.harga,
+            d.subtotal,
+            p.nama_produk,
+            p.kode_produk,
+            p.gambar
+        ');
+
+        $this->db->from('tbl_detail_order d');
+        $this->db->join('tbl_produk p', 'p.id_produk = d.id_produk', 'left');
+        $this->db->where('d.id_order', $id_order);
+
+        return $this->db->get()->result();
+    }
+
+    public function get_order_header($id_order)
+    {
+        $this->db->select('
+            o.id_order,
+            o.kode_order,
+            o.tanggal_order,
+            o.status,
+            o.total_order,
+            p.nama_pelanggan,
+            p.no_telp,
+            IFNULL(pb.metode_pembayaran, "-") as metode_pembayaran
+        ');
+
+        $this->db->from('tbl_order o');
+        $this->db->join('tbl_pelanggan p', 'p.id_pelanggan = o.id_pelanggan', 'left');
+        $this->db->join('tbl_pembayaran pb', 'pb.id_order = o.id_order', 'left');
+
+        $this->db->where('o.id_order', $id_order);
+
+        return $this->db->get()->row();
+    }
+
 }

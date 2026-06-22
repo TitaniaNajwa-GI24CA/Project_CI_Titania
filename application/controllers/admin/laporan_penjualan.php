@@ -10,6 +10,7 @@ class laporan_penjualan extends CI_Controller {
         $this->load->model('admin/laporan_penjualan_model');
         $this->load->model('admin/sales_model');
         $this->load->model('admin/dashboard_model');
+        $this->load->model('admin/produk_model');
 
         if(!$this->session->userdata('logged_in')){
             redirect('auth/login');
@@ -25,6 +26,7 @@ class laporan_penjualan extends CI_Controller {
 
         $data['sales'] =
             $this->sales_model->get_all();
+        $data['produk'] = $this->produk_model->get_all();
 
         $data['laporan'] =
             $this->laporan_penjualan_model

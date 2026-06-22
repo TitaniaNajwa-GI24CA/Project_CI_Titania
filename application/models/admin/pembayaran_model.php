@@ -28,10 +28,23 @@ class pembayaran_model extends CI_Model {
         return $this->db->get()->result();
     }
 
-    public function get_order_dikirim()
+    public function get_order()
     {
-        $this->db->where('status','dikirim');
-        return $this->db->get('tbl_order')->result();
+        $this->db->select('
+            tbl_order.id_order,
+            tbl_order.kode_order,
+            tbl_order.total_order,
+            tbl_pelanggan.nama_pelanggan
+        ');
+
+        $this->db->from('tbl_order');
+
+        $this->db->join(
+            'tbl_pelanggan',
+            'tbl_pelanggan.id_pelanggan = tbl_order.id_pelanggan'
+        );
+
+        return $this->db->get()->result();
     }
 
     public function insert($data)

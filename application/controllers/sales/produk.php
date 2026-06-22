@@ -7,9 +7,9 @@ class produk extends CI_Controller {
     {
         parent::__construct();
 
-        $this->load->model('admin/produk_model');
-        $this->load->model('admin/kategori_model');
-        $this->load->model('admin/dashboard_model');
+        $this->load->model('sales/produk_model');
+        $this->load->model('sales/kategori_model');
+        $this->load->model('sales/dashboard_model');
 
         if(!$this->session->userdata('logged_in')){
             redirect('auth/login');
@@ -26,11 +26,11 @@ class produk extends CI_Controller {
         $data['produk']        = $this->produk_model->get_all();
         $data['kategori']      = $this->kategori_model->get_all();
         $data['total_data']    = $this->produk_model->count_all();
-        $this->load->view('admin/layouts/header');
-        $this->load->view('admin/layouts/sidebar');
-        $this->load->view('admin/layouts/topbar', $data);
-        $this->load->view('admin/produk/index', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('sales/layouts/header');
+        $this->load->view('sales/layouts/sidebar');
+        $this->load->view('sales/layouts/topbar', $data);
+        $this->load->view('sales/produk/index', $data);
+        $this->load->view('sales/layouts/footer');
     }
 
     public function simpan()
@@ -68,7 +68,7 @@ class produk extends CI_Controller {
             'Produk berhasil ditambahkan'
         );
 
-        redirect('admin/produk');
+        redirect('sales/produk');
     }
 
     public function update()
@@ -105,7 +105,7 @@ class produk extends CI_Controller {
             'Produk berhasil diperbarui'
         );
 
-        redirect('admin/produk');
+        redirect('sales/produk');
     }
 
     public function delete($id_produk)
@@ -128,7 +128,7 @@ class produk extends CI_Controller {
             'Produk berhasil dihapus'
         );
 
-        redirect('admin/produk');
+        redirect('sales/produk');
     }
 
 }

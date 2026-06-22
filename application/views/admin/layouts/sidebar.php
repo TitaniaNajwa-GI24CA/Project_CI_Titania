@@ -83,10 +83,6 @@
                     Laporan Barang & Stok
                 </a>
             </div>
-            <a href="<?= base_url('admin/profile'); ?>">
-                <i class="fa-solid fa-gear"></i>
-                Pengaturan
-            </a>
         </div>
     </div>
 </div>

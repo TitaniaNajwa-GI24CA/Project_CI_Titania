@@ -71,7 +71,6 @@
 
                     <td>
                         <div class="table-action">
-
                             <a href="#"
                                 class="edit-btn open-edit-order"
                                 data-id="<?= $row->id_order; ?>"
@@ -79,7 +78,11 @@
                                 data-status="<?= $row->status; ?>">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
-
+                            
+                            <a href="<?= base_url('admin/detail-order/'.$row->id_order); ?>"
+                            class="view-btn">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>

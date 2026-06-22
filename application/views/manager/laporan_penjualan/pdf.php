@@ -73,7 +73,7 @@ $grand_total = 0;
 
 foreach($laporan as $row):
 
-$grand_total += $row->total_harga;
+$grand_total += $row->total_order;
 ?>
 
 <tr>
@@ -83,7 +83,7 @@ $grand_total += $row->total_harga;
     <td><?= $row->nama_pelanggan; ?></td>
     <td><?= $row->nama_sales; ?></td>
     <td>
-        Rp <?= number_format($row->total_harga,0,',','.'); ?>
+        Rp <?= number_format($row->total_order,0,',','.'); ?>
     </td>
 </tr>
 

@@ -24,26 +24,10 @@
                 Data Order Saya
             </a>
 
-            <a href="<?= base_url('sales/pembayaran'); ?>">
-                <i class="fa-solid fa-credit-card"></i>
-                Data Pembayaran Saya
-            </a>
-
             <a href="<?= base_url('sales/pelanggan'); ?>">
                 <i class="fa-solid fa-users"></i>
-                Data Pelanggan Saya
+                Data Pelanggan
             </a>
-
-            <a href="<?= base_url('sales/laporan-penjualan'); ?>">
-                <i class="fa-solid fa-chart-line"></i>
-                Laporan Penjualan Saya
-            </a>
-
-            <a href="<?= base_url('sales/profile'); ?>">
-                <i class="fa-solid fa-gear"></i>
-                Pengaturan
-            </a>
-
         </div>
     </div>
 </div>

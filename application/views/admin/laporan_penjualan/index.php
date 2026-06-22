@@ -59,6 +59,20 @@
         </select>
     </div>
 
+    <div class="filter-group">
+        <label>Produk</label>
+        <select name="produk">
+            <option value="">Semua Produk</option>
+
+            <?php foreach($produk as $p): ?>
+                <option value="<?= $p->id_produk ?>"
+                    <?= ($this->input->get('produk') == $p->id_produk ? 'selected' : ''); ?>>
+                    <?= $p->nama_produk ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
     <div class="filter-action">
         <button type="submit" class="btn-filter">
             <i class="fa-solid fa-filter"></i>
@@ -89,7 +103,9 @@
             <thead>
                 <tr>
                     <th>Kode Order</th>
-                    <th>Tanggal</th>
+                    <th>Produk</th>
+                    <th>Tanggal Order</th>
+                    <th>Tanggal Pembayaran</th>
                     <th>Pelanggan</th>
                     <th>Sales</th>
                     <th>Total Penjualan</th>
@@ -99,10 +115,17 @@
                 <?php foreach($laporan as $row): ?>
                 <tr>
                     <td><?= $row->kode_order; ?></td>
+                    <td><?= $row->nama_produk; ?></td>
                     <td>
                         <?= date(
                             'd-m-Y',
                             strtotime($row->tanggal_order)
+                        ); ?>
+                    </td>
+                    <td>
+                        <?= date(
+                            'd-m-Y',
+                            strtotime($row->tanggal_pembayaran)
                         ); ?>
                     </td>
                     <td><?= $row->nama_pelanggan; ?></td>
@@ -110,7 +133,7 @@
 
                     <td>
                         Rp <?= number_format(
-                            $row->total_harga,
+                            $row->total_order,
                             0,
                             ',',
                             '.'

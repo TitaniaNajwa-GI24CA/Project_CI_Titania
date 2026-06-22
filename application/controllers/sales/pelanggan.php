@@ -7,8 +7,8 @@ class pelanggan extends CI_Controller {
     {
         parent::__construct();
 
-        $this->load->model('admin/pelanggan_model');
-        $this->load->model('admin/dashboard_model');
+        $this->load->model('sales/pelanggan_model');
+        $this->load->model('sales/dashboard_model');
 
         if(!$this->session->userdata('logged_in')){
             redirect('auth/login');
@@ -27,11 +27,11 @@ class pelanggan extends CI_Controller {
         $data['total_data'] =
             $this->pelanggan_model->count_all();
 
-        $this->load->view('admin/layouts/header');
-        $this->load->view('admin/layouts/sidebar');
-        $this->load->view('admin/layouts/topbar',$data);
-        $this->load->view('admin/pelanggan/index',$data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('sales/layouts/header');
+        $this->load->view('sales/layouts/sidebar');
+        $this->load->view('sales/layouts/topbar',$data);
+        $this->load->view('sales/pelanggan/index',$data);
+        $this->load->view('sales/layouts/footer');
     }
 
     public function simpan()
@@ -54,7 +54,7 @@ class pelanggan extends CI_Controller {
             'Data pelanggan berhasil ditambahkan'
         );
 
-        redirect('admin/pelanggan');
+        redirect('sales/pelanggan');
     }
 
     public function update()
@@ -82,7 +82,7 @@ class pelanggan extends CI_Controller {
             'Data pelanggan berhasil diperbarui'
         );
 
-        redirect('admin/pelanggan');
+        redirect('sales/pelanggan');
     }
 
     public function delete($id_pelanggan)
@@ -94,6 +94,6 @@ class pelanggan extends CI_Controller {
             'Data pelanggan berhasil dihapus'
         );
 
-        redirect('admin/pelanggan');
+        redirect('sales/pelanggan');
     }
 }

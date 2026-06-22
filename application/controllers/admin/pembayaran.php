@@ -31,6 +31,8 @@ class pembayaran extends CI_Controller {
         $data['total_data'] =
             $this->pembayaran_model->count_all();
 
+        $data['order'] = $this->pembayaran_model->get_order();
+        
         $this->load->view('admin/layouts/header');
         $this->load->view('admin/layouts/sidebar');
         $this->load->view('admin/layouts/topbar',$data);
@@ -97,4 +99,5 @@ class pembayaran extends CI_Controller {
 
         redirect('admin/pembayaran');
     }
+
 }

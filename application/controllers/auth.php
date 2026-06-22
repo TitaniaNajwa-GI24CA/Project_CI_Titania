@@ -130,7 +130,10 @@ class auth extends CI_Controller {
             redirect('admin/dashboard');
         } elseif ($user->role == 'sales') {
             redirect('sales/dashboard');
-        } else {
+        } elseif ($user->role == 'manager') {
+            redirect('manager/dashboard');
+        } 
+        else {
             redirect('auth/login');
         }
     }

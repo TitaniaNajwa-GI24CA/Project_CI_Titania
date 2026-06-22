@@ -7,9 +7,9 @@ class laporan_stok extends CI_Controller {
     {
         parent::__construct();
 
-        $this->load->model('admin/laporan_stok_model');
-        $this->load->model('admin/laporan_penjualan_model');
-        $this->load->model('admin/dashboard_model');
+        $this->load->model('manager/laporan_stok_model');
+        $this->load->model('manager/laporan_penjualan_model');
+        $this->load->model('manager/dashboard_model');
 
         if(!$this->session->userdata('logged_in')){
             redirect('auth/login');
@@ -51,11 +51,11 @@ class laporan_stok extends CI_Controller {
                 $tahun
             );
 
-        $this->load->view('admin/layouts/header');
-        $this->load->view('admin/layouts/sidebar');
-        $this->load->view('admin/layouts/topbar',$data);
-        $this->load->view('admin/laporan_stok/index',$data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('manager/layouts/header');
+        $this->load->view('manager/layouts/sidebar');
+        $this->load->view('manager/layouts/topbar',$data);
+        $this->load->view('manager/laporan_stok/index',$data);
+        $this->load->view('manager/layouts/footer');
     }
 
     public function export_excel()
@@ -71,7 +71,7 @@ class laporan_stok extends CI_Controller {
                 );
 
         $this->load->view(
-            'admin/laporan_stok/excel',
+            'manager/laporan_stok/excel',
             $data
         );
     }
@@ -92,7 +92,7 @@ class laporan_stok extends CI_Controller {
                 );
 
         $this->load->view(
-            'admin/laporan_stok/pdf',
+            'manager/laporan_stok/pdf',
             $data
         );
     }

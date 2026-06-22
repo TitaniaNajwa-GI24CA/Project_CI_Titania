@@ -98,22 +98,27 @@
             <p>Tambahkan data pembayaran baru.</p>
         </div>
 
-        <form action="<?= base_url('sales/pembayaran/simpan'); ?>" method="post">
+        <form action="<?= base_url('admin/pembayaran/simpan'); ?>" method="post">
             <div class="produk-modal-grid">
 
                 <div class="produk-input-group">
                     <label>Order</label>
-                    <select name="id_order" required>
-                        <option value="" disabled selected>-- Pilih Order --</option>
-                        <?php if(!empty($order)): ?>
-                            <?php foreach($order as $o): ?>
-                                <option value="<?= $o->id_order; ?>">
-                                    <?= $o->kode_order; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <option disabled>Tidak ada order</option>
-                        <?php endif; ?>
+                     <select name="id_order" id="id_order" required>
+                        <option value="">-- Pilih Order --</option>
+
+                        <?php foreach($order as $o): ?>
+
+                        <option
+                            value="<?= $o->id_order; ?>"
+                            data-total="<?= $o->total_order; ?>">
+
+                            <?= $o->kode_order; ?> -
+                            <?= $o->nama_pelanggan; ?>
+
+                        </option>
+
+                        <?php endforeach; ?>
+
                     </select>
                 </div>
 
@@ -137,8 +142,13 @@
 
                 <div class="produk-input-group">
                     <label>Total Bayar</label>
-                    <input type="number"
-                        name="total_bayar">
+                    <input type="text"
+                        id="total_bayar_display"
+                        readonly>
+
+                    <input type="hidden"
+                        name="total_bayar"
+                        id="total_bayar">
                 </div>
 
                 <div class="produk-input-group produk-full">
@@ -233,7 +243,7 @@
             <div class="modal-footer-custom">
                 <button type="submit"
                     class="produk-submit-btn">
-                    Update Sales
+                    Update Pembayaran
                 </button>
             </div>
         </form>

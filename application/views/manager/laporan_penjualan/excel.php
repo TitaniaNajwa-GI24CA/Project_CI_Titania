@@ -22,7 +22,7 @@ $total = 0;
 
 foreach($laporan as $row):
 
-$total += $row->total_harga;
+$total += $row->total_order;
 ?>
 
 <tr>
@@ -31,7 +31,7 @@ $total += $row->total_harga;
     <td><?= $row->tanggal_order; ?></td>
     <td><?= $row->nama_pelanggan; ?></td>
     <td><?= $row->nama_sales; ?></td>
-    <td><?= $row->total_harga; ?></td>
+    <td><?= $row->total_order; ?></td>
 </tr>
 
 <?php endforeach; ?>

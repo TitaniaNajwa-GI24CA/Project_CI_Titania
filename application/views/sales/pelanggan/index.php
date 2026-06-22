@@ -57,7 +57,7 @@
 
                             <a href="#"
                             class="delete-btn open-delete-modal"
-                            data-url="<?= base_url('admin/pelanggan/delete/'.$row->id_pelanggan); ?>">
+                            data-url="<?= base_url('sales/pelanggan/delete/'.$row->id_pelanggan); ?>">
 
                                 <i class="fa-solid fa-trash"></i>
                             </a>
@@ -82,7 +82,7 @@
             <p>Tambahkan produk baru ke sistem.</p>
         </div>
 
-       <form action="<?= base_url('admin/pelanggan/simpan'); ?>" method="post">
+       <form action="<?= base_url('sales/pelanggan/simpan'); ?>" method="post">
         <div class="produk-modal-grid">
             <div class="produk-input-group">
                 <label>Nama Pelanggan</label>
@@ -146,7 +146,7 @@
             <p>Perbarui data produk.</p>
         </div>
 
-        <form action="<?= base_url('admin/pelanggan/update'); ?>" method="post">
+        <form action="<?= base_url('sales/pelanggan/update'); ?>" method="post">
             <input type="hidden" name="id_pelanggan" id="edit_id_pelanggan">
             <div class="produk-modal-grid">
                 <div class="produk-input-group">

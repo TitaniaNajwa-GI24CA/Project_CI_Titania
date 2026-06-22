@@ -7,9 +7,10 @@ class laporan_penjualan extends CI_Controller {
     {
         parent::__construct();
 
-        $this->load->model('admin/laporan_penjualan_model');
-        $this->load->model('admin/sales_model');
-        $this->load->model('admin/dashboard_model');
+        $this->load->model('manager/laporan_penjualan_model');
+        $this->load->model('manager/sales_model');
+        $this->load->model('manager/dashboard_model');
+        $this->load->model('manager/produk_model');
 
         if(!$this->session->userdata('logged_in')){
             redirect('auth/login');
@@ -25,6 +26,7 @@ class laporan_penjualan extends CI_Controller {
 
         $data['sales'] =
             $this->sales_model->get_all();
+        $data['produk'] = $this->produk_model->get_all();
 
         $data['laporan'] =
             $this->laporan_penjualan_model
@@ -54,11 +56,11 @@ class laporan_penjualan extends CI_Controller {
                 $tahun
             );
 
-        $this->load->view('admin/layouts/header');
-        $this->load->view('admin/layouts/sidebar');
-        $this->load->view('admin/layouts/topbar',$data);
-        $this->load->view('admin/laporan_penjualan/index',$data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('manager/layouts/header');
+        $this->load->view('manager/layouts/sidebar');
+        $this->load->view('manager/layouts/topbar',$data);
+        $this->load->view('manager/laporan_penjualan/index',$data);
+        $this->load->view('manager/layouts/footer');
     }
 
     public function export_excel()
@@ -71,7 +73,7 @@ class laporan_penjualan extends CI_Controller {
             ->get_laporan($bulan,$tahun,$sales);
 
         $this->load->view(
-            'admin/laporan_penjualan/excel',
+            'manager/laporan_penjualan/excel',
             $data
         );
     }
@@ -89,7 +91,7 @@ class laporan_penjualan extends CI_Controller {
             ->get_laporan($bulan,$tahun,$sales);
 
         $this->load->view(
-            'admin/laporan_penjualan/pdf',
+            'manager/laporan_penjualan/pdf',
             $data
         );
     }

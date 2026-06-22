@@ -59,4 +59,17 @@ class order extends CI_Controller {
 
         redirect('admin/order');
     }
+
+    public function detail_order($id_order)
+    {
+        $this->load->model('admin/order_model', 'order_model');
+        $data['order_header'] = $this->order_model->get_order_header($id_order);
+        $data['order_detail'] = $this->order_model->get_order_detail($id_order);
+
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/sidebar');
+        $this->load->view('admin/layouts/topbar');
+        $this->load->view('admin/order/detail_order', $data);
+        $this->load->view('admin/layouts/footer');
+    }
 }

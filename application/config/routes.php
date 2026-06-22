@@ -79,3 +79,4 @@ $route['admin/laporan-stok'] = 'admin/laporan_stok';
 $route['laporan-stok/excel'] = 'admin/laporan_stok/export_excel';
 $route['laporan-stok/pdf'] = 'admin/laporan_stok/export_pdf';
 $route['sales/detail-order/(:num)'] = 'sales/order/detail_order/$1';
+$route['admin/detail-order/(:num)'] = 'admin/order/detail_order/$1';
