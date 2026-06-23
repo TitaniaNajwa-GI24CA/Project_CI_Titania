@@ -70,11 +70,11 @@
     </div>
     <div class="detail-action-bottom">
 
-        <a href="<?= base_url('sales/order'); ?>" class="back-detail-btn">
+        <a href="<?= base_url('admin/order'); ?>" class="back-detail-btn">
             Kembali
         </a>
 
-        <a href="<?= base_url('sales/cetak-nota/'.$order_header->id_order); ?>"
+        <a href="<?= base_url('admin/cetak-nota/'.$order_header->id_order); ?>"
            target="_blank"
            class="print-detail-btn">
             Cetak Nota

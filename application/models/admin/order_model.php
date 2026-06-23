@@ -134,16 +134,17 @@ class order_model extends CI_Model {
             o.total_order,
             p.nama_pelanggan,
             p.no_telp,
+            s.nama_sales,
             IFNULL(pb.metode_pembayaran, "-") as metode_pembayaran
         ');
 
         $this->db->from('tbl_order o');
         $this->db->join('tbl_pelanggan p', 'p.id_pelanggan = o.id_pelanggan', 'left');
         $this->db->join('tbl_pembayaran pb', 'pb.id_order = o.id_order', 'left');
+        $this->db->join('tbl_sales s', 's.id_sales = o.id_sales', 'left');
 
         $this->db->where('o.id_order', $id_order);
 
         return $this->db->get()->row();
     }
-
 }

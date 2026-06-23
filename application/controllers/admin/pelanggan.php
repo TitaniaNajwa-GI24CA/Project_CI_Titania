@@ -85,14 +85,22 @@ class pelanggan extends CI_Controller {
         redirect('admin/pelanggan');
     }
 
-    public function delete($id_pelanggan)
+    public function delete($id)
     {
-        $this->pelanggan_model->delete($id_pelanggan);
-
-        $this->session->set_flashdata(
-            'success',
-            'Data pelanggan berhasil dihapus'
-        );
+        if($this->pelanggan_model->delete($id))
+        {
+            $this->session->set_flashdata(
+                'success',
+                'Data pelanggan berhasil dihapus.'
+            );
+        }
+        else
+        {
+            $this->session->set_flashdata(
+                'error',
+                'Pelanggan tidak dapat dihapus karena sudah digunakan pada transaksi.'
+            );
+        }
 
         redirect('admin/pelanggan');
     }

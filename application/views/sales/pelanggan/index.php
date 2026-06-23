@@ -54,13 +54,6 @@
                             data-alamat="<?= $row->alamat; ?>">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
-
-                            <a href="#"
-                            class="delete-btn open-delete-modal"
-                            data-url="<?= base_url('sales/pelanggan/delete/'.$row->id_pelanggan); ?>">
-
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
                         </div>
                     </td>
                 </tr>

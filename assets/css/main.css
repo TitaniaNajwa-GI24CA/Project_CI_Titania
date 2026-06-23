@@ -2511,3 +2511,21 @@ ul{
     background: #ffe6ea;
     color: #d9415e;
 }
+
+.wa-btn{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    background:#25D366;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.wa-btn:hover{
+    transform:translateY(-2px);
+    background:#1ebe5d;
+}

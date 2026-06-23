@@ -31,6 +31,35 @@
                 </div>
             <?php endif; ?>
 
+            <div class="demo-dropdown">
+                <button type="button" class="demo-toggle" id="demoToggle">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Informasi Akun Demo
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+
+                <div class="demo-content" id="demoContent">
+
+                    <div class="demo-role-card">
+                        <span class="role-badge admin">Admin</span>
+                        <p><b>Username</b> : admin</p>
+                        <p><b>Password</b> : admin123</p>
+                    </div>
+
+                    <div class="demo-role-card">
+                        <span class="role-badge sales">Sales</span>
+                        <p><b>Username</b> : sales</p>
+                        <p><b>Password</b> : sales123</p>
+                    </div>
+
+                    <div class="demo-role-card">
+                        <span class="role-badge manager">Manager</span>
+                        <p><b>Username</b> : manager</p>
+                        <p><b>Password</b> : manager123</p>
+                    </div>
+                </div>
+            </div>
+
             <form action="<?= base_url('auth/proses_login'); ?>" method="post">
 
                 <div class="input-group-custom">
@@ -78,6 +107,18 @@
         </div>
 
     </div>
+
+<script>
+        document
+        .getElementById('demoToggle')
+        .addEventListener('click', function(){
+
+            document
+            .getElementById('demoContent')
+            .classList.toggle('show');
+
+        });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php if($this->session->flashdata('success')) : ?>
         <script>

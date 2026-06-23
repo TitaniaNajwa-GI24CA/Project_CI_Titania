@@ -5,6 +5,28 @@
     </a>
 </div>
 
+<?php if($this->session->flashdata('success')): ?>
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: '<?= $this->session->flashdata("success"); ?>',
+        confirmButtonColor: '#ea580c'
+    });
+    </script>
+    <?php endif; ?>
+
+    <?php if($this->session->flashdata('error')): ?>
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Gagal',
+        text: '<?= $this->session->flashdata("error"); ?>',
+        confirmButtonColor: '#ea580c'
+    });
+    </script>
+<?php endif; ?>
+
 <div class="table-card">
     <div class="table-responsive">
         <table class="custom-table" id="project-datatable">

@@ -80,3 +80,6 @@ $route['laporan-stok/excel'] = 'admin/laporan_stok/export_excel';
 $route['laporan-stok/pdf'] = 'admin/laporan_stok/export_pdf';
 $route['sales/detail-order/(:num)'] = 'sales/order/detail_order/$1';
 $route['admin/detail-order/(:num)'] = 'admin/order/detail_order/$1';
+$route['sales/cetak-nota/(:num)'] = 'sales/order/cetak_nota/$1';
+$route['admin/cetak-nota/(:num)'] = 'admin/order/cetak_nota/$1';
+$route['admin/order/kirim_notifikasi/(:num)'] = 'admin/order/kirim_notifikasi/$1';

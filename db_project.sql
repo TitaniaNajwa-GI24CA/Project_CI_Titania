@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2026 at 09:34 PM
+-- Generation Time: Jun 23, 2026 at 03:18 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -44,7 +44,9 @@ CREATE TABLE `tbl_detail_order` (
 INSERT INTO `tbl_detail_order` (`id_detail`, `id_order`, `id_produk`, `qty`, `harga`, `subtotal`) VALUES
 (5, 3, 13, 1, '899000.00', '899000.00'),
 (6, 3, 17, 2, '460000.00', '920000.00'),
-(7, 4, 17, 1, '460000.00', '460000.00');
+(7, 4, 17, 1, '460000.00', '460000.00'),
+(8, 5, 12, 1, '12349000.00', '12349000.00'),
+(9, 5, 14, 3, '1299000.00', '3897000.00');
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,8 @@ INSERT INTO `tbl_kategori_produk` (`id_kategori`, `kode_kategori`, `nama_kategor
 (3, 'KTG003', 'Televisi', 'Kategori TV', 'Aktif', '2026-06-17 22:13:25', '2026-06-17 22:13:25'),
 (4, 'KTG004', 'Kamera', 'Kategori Kamera Digital', 'Aktif', '2026-06-17 22:13:25', '2026-06-17 22:13:25'),
 (5, 'KTG005', 'Audio', 'Speaker dan Headset', 'Aktif', '2026-06-17 22:13:25', '2026-06-17 22:13:25'),
-(6, 'KTG006', 'Aksesoris', 'Mouse, Keyboard, dll', 'Aktif', '2026-06-17 22:13:25', '2026-06-17 22:58:09');
+(6, 'KTG006', 'Aksesoris', 'Mouse, Keyboard, dll', 'Aktif', '2026-06-17 22:13:25', '2026-06-17 22:58:09'),
+(7, 'KTG007', 'Pad', 'Tablet minimalist modern', 'Aktif', '2026-06-23 06:04:16', '2026-06-23 06:04:44');
 
 -- --------------------------------------------------------
 
@@ -95,8 +98,9 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`id_order`, `kode_order`, `tanggal_order`, `id_pelanggan`, `id_sales`, `total_order`, `status`) VALUES
-(3, 'ODR-8ED098', '2026-06-21', 2, 1, '1819000.00', 'dikirim'),
-(4, 'ODR-6F487A', '2026-06-22', 33, 1, '460000.00', 'pending');
+(3, 'ODR-8ED098', '2026-06-21', 2, 1, '1819000.00', 'selesai'),
+(4, 'ODR-6F487A', '2026-06-22', 33, 1, '460000.00', 'selesai'),
+(5, 'ODR-104409', '2026-06-23', 22, 1, '16246000.00', 'selesai');
 
 -- --------------------------------------------------------
 
@@ -120,10 +124,9 @@ CREATE TABLE `tbl_pelanggan` (
 --
 
 INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `kode_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `no_telp`, `email`, `jenis_pelanggan`, `alamat`) VALUES
-(2, 'PG001', 'Kirana Malika Syafir', 'P', '081212806842', 'kiranamalika12@gmail', 'Reguler', 'Perumahan Royal Rajeg'),
+(2, 'PG001', 'Kirana Malika Syafir', 'P', '081288072224', 'kiranamalika12@gmail', 'Member', 'Perumahan Royal Rajeg'),
 (3, 'PG002', 'Mahesa Ibrahim', 'L', '089627912778', 'mhsaibrahim16@gmail.com', 'Member', 'Sumur Pacing'),
 (19, 'PG003', 'Andi Wijaya', 'L', '081234567803', 'andi.wijaya@gmail.com', 'Reguler', 'Bekasi'),
-(20, 'PG004', 'Rina Marlina', 'P', '081234567804', 'rina.marlina@gmail.com', 'Member', 'Depok'),
 (21, 'PG005', 'Dedi Kurniawan', 'L', '081234567805', 'dedi.kurniawan@gmail.com', 'VIP', 'Bogor'),
 (22, 'PG006', 'Nabila Putri', 'P', '081234567806', 'nabila.putri@gmail.com', 'Reguler', 'Jakarta Barat'),
 (23, 'PG007', 'Ahmad Fauzi', 'L', '081234567807', 'ahmad.fauzi@gmail.com', 'Member', 'Tangerang Selatan'),
@@ -136,7 +139,7 @@ INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `kode_pelanggan`, `nama_pelanggan`,
 (30, 'PG014', 'Citra Anggraini', 'P', '081234567814', 'citra.anggraini@gmail.com', 'Reguler', 'Bekasi'),
 (31, 'PG015', 'Hendra Gunawan', 'L', '081234567815', 'hendra.gunawan@gmail.com', 'VIP', 'Jakarta Pusat'),
 (32, 'PG016', 'Arumi Hasanah', 'P', '081315352350', 'titanianajwaa23@gmail.com', 'Member', 'Pondok Sukatani Permai'),
-(33, 'PG017', 'Ammar Zain', 'L', '012345678910', 'ammarzain05@gmail.com', 'VIP', 'Royal Rajeg');
+(33, 'PG017', 'Ammar Zain', 'L', '6285691156814', 'ammarzain05@gmail.com', 'VIP', 'Royal Rajeg');
 
 -- --------------------------------------------------------
 
@@ -161,7 +164,8 @@ CREATE TABLE `tbl_pembayaran` (
 
 INSERT INTO `tbl_pembayaran` (`id_pembayaran`, `kode_pembayaran`, `id_order`, `tanggal_pembayaran`, `metode_pembayaran`, `total_bayar`, `status_pembayaran`, `created_at`) VALUES
 (1, 'BYR001', 4, '2026-06-23', 'Transfer Bank', '460000.00', 'Lunas', '2026-06-22 18:32:41'),
-(2, 'BYR002', 3, '2026-07-14', 'Cash', '1819000.00', 'Lunas', '2026-06-22 18:39:04');
+(2, 'BYR002', 3, '2026-07-14', 'Cash', '1819000.00', 'Lunas', '2026-06-22 18:39:04'),
+(3, 'BYR003', 5, '2026-09-01', 'E-Wallet', '16246000.00', 'Lunas', '2026-06-22 23:18:40');
 
 -- --------------------------------------------------------
 
@@ -186,12 +190,13 @@ CREATE TABLE `tbl_produk` (
 INSERT INTO `tbl_produk` (`id_produk`, `id_kategori`, `kode_produk`, `nama_produk`, `harga`, `stok`, `gambar`) VALUES
 (10, 1, 'PK001', 'Axioo Hype 7', '8920000.00', 10, 'produk_1781844869.jpg'),
 (11, 2, 'PK002', 'Samsung S16 Ultra', '15699000.00', 6, 'produk_1781844915.jpg'),
-(12, 3, 'PK003', 'SmartTv Coocaa', '12349000.00', 7, 'produk_1781844958.jpg'),
+(12, 3, 'PK003', 'SmartTv Coocaa', '12349000.00', 6, 'produk_1781844958.jpg'),
 (13, 4, 'PK004', 'Digital Camera', '899000.00', 15, 'produk_1781844995.jpg'),
-(14, 5, 'PK005', 'AirPods Max 24', '1299000.00', 9, 'produk_1781845036.jpg'),
+(14, 5, 'PK005', 'AirPods Max 24', '1299000.00', 6, 'produk_1781845036.jpg'),
 (15, 5, 'PK006', 'AirPods Bluetooth 4', '599500.00', 25, 'produk_1781845084.jpeg'),
 (16, 6, 'PK007', 'Pinky Keyboard', '315000.00', 18, 'produk_1781845116.jpg'),
-(17, 5, 'PK008', 'Speaker Bluetooth Karaoke', '460000.00', 5, 'produk_1781845159.jpg');
+(17, 5, 'PK008', 'Speaker Bluetooth Karaoke', '460000.00', 5, 'produk_1781845159.jpg'),
+(18, 2, 'PK009', 'Iphone 17 PM', '17655000.00', 50, 'produk_17821698554.jpg');
 
 -- --------------------------------------------------------
 
@@ -217,7 +222,7 @@ CREATE TABLE `tbl_sales` (
 
 INSERT INTO `tbl_sales` (`id_sales`, `id_user`, `kode_sales`, `nama_sales`, `no_telp`, `email`, `alamat`, `penjualan`, `status`) VALUES
 (1, 3, 'S51051', 'Mahesa Ibrahim', '089627912778', 'Imahez1603@gmail.com', 'Sumur Pacing', '0.00', 'aktif'),
-(2, 6, 'S28845', 'Yuniar Ayu Indriyanti', '081288072224', 'ayu@gmail.com', 'Pondok Sukatani Permai', '0.00', 'aktif');
+(3, NULL, 'SL002', 'Naura Nur Azizah', '081288072224', 'nauranurazizah07@gmail.com', 'Pondok Sukatani Permai\r\n', '0.00', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -246,11 +251,11 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_user`, `nama_user`, `username`, `password`, `role`, `email`, `no_telp`, `alamat`, `foto_profil`, `status`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 'Titania Najwa', 'Inong', '$2y$10$WKECsZJUYYXNyTaqYh.lRuPRe4s3y0HkJXeGgKr9raopF0gHOjFrK', 'admin', 'titanianajwaa053@gmail.com', '081315352350', 'Pondok Sukatani Permai', 'profile_1_1780252262.jpeg', 'aktif', '2026-06-22 21:32:32', '2026-05-31 15:51:34', '2026-06-23 02:32:32'),
-(3, 'Mahesa Ibrahim', 'Mahes', '$2y$10$bAxfHEovgtV1mQpFvu/dPOCx1UgvmDzg.uItfjBzOZnb/fJYmjHWy', 'sales', 'Imahez1603@gmail.com', '089627912778', 'Sumur Pacing', 'default.png', 'aktif', '2026-06-22 19:44:53', '2026-05-31 16:25:59', '2026-06-23 00:44:53'),
+(1, 'Titania Najwa', 'admin', '$2y$10$O9B6X.GAzjcZ6J7UccuzFuFFL3lOQ/dzcyeS2PTVfKHHd7ke971de', 'admin', 'titanianajwaa053@gmail.com', '081315352350', 'Pondok Sukatani Permai', 'profile_1_1780252262.jpeg', 'aktif', '2026-06-23 02:07:31', '2026-05-31 15:51:34', '2026-06-23 02:48:34'),
+(3, 'Mahesa Ibrahim', 'sales', '$2y$10$lhwywwfcgzfoh6ugfwQFCep.MSeLZt63aTfobvN2rwluICoQXSgdq', 'sales', 'Imahez1603@gmail.com', '089627912778', 'Sumur Pacing', 'default.png', 'aktif', '2026-06-23 03:14:18', '2026-05-31 16:25:59', '2026-06-23 08:14:18'),
 (4, 'Naura Nur Azizah', 'Naura', '$2y$10$oU3bllZXhnsh8DOAW0n71.mL/gghi3/H9jQ35oHiey4sS3I7VH3QG', 'admin', 'enay0704@gmail.com', '081288072224', 'Pondok Sukatani Permai', 'default.png', 'aktif', NULL, '2026-05-31 16:33:09', '2026-05-31 16:33:09'),
 (6, 'Yuniar Ayu Indriyanti', 'Ayu', '$2y$10$VQNN61Pg1SPPMLtxJwU6N.L7Jfvn1qWAbjjWvvp.W7Hgy8cqFr9y2', 'sales', 'ayu@gmail.com', '081288072224', 'Pondok Sukatani Permai', 'default.png', 'aktif', '2026-06-21 08:36:25', '2026-06-21 08:36:12', '2026-06-21 13:36:25'),
-(7, 'Alexa', 'Alexa', '$2y$10$swa6hvTdXnyScO8uTPfmE.F908xO8nTgu4EYwUNqQh3UVaPPMhAfK', 'manager', 'alexa23@gmail.com', '081212806842', 'Kukun', 'default.png', 'aktif', '2026-06-22 21:22:16', '2026-06-22 21:16:59', '2026-06-23 02:22:16');
+(7, 'Alexa', 'manager', '$2y$10$QsQ22U8g/k4Vv0F0vgwCYOKWs9xZT3npnXEZbkkMaAlAzzRhAqqyy', 'manager', 'alexa23@gmail.com', '081212806842', 'Kukun', 'default.png', 'aktif', '2026-06-23 03:05:43', '2026-06-22 21:16:59', '2026-06-23 08:05:43');
 
 --
 -- Indexes for dumped tables
@@ -324,19 +329,19 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_detail_order`
 --
 ALTER TABLE `tbl_detail_order`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_kategori_produk`
 --
 ALTER TABLE `tbl_kategori_produk`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_pelanggan`
@@ -348,19 +353,19 @@ ALTER TABLE `tbl_pelanggan`
 -- AUTO_INCREMENT for table `tbl_pembayaran`
 --
 ALTER TABLE `tbl_pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_produk`
 --
 ALTER TABLE `tbl_produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_sales`
 --
 ALTER TABLE `tbl_sales`
-  MODIFY `id_sales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

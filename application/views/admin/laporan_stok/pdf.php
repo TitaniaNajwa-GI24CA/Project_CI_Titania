@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>Laporan Barang & Stok</title>
@@ -6,35 +7,102 @@
 <style>
 
 body{
-    font-family:Arial,sans-serif;
-    padding:30px;
+    font-family: Arial, sans-serif;
+    margin:30px;
+    color:#333;
+    font-size:13px;
 }
 
-h2{
-    text-align:center;
-    margin-bottom:5px;
+.header{
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
 }
 
-.subtitle{
+.logo{
+    width:80px;
+    margin-right:15px;
+}
+
+.company-info h1{
+    margin:0;
+    color:#c2410c;
+    font-size:24px;
+}
+
+.company-info p{
+    margin:2px 0;
+    font-size:12px;
+}
+
+.line{
+    border-top:3px solid #c2410c;
+    margin-top:10px;
+}
+
+.line2{
+    border-top:1px solid #333;
+    margin-top:2px;
+    margin-bottom:25px;
+}
+
+.report-title{
     text-align:center;
     margin-bottom:20px;
+}
+
+.report-title h2{
+    margin:0;
+    color:#c2410c;
+    font-size:22px;
+}
+
+.report-title p{
+    margin-top:5px;
+    color:#666;
+}
+
+.info-laporan{
+    margin-bottom:20px;
+}
+
+.info-laporan table{
+    width:auto;
+}
+
+.info-laporan td{
+    border:none;
+    padding:3px 8px 3px 0;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:20px;
-}
-
-th,
-td{
-    border:1px solid #000;
-    padding:8px;
-    font-size:13px;
 }
 
 th{
-    background:#f2f2f2;
+    background:#c2410c;
+    color:white;
+    padding:10px;
+    border:1px solid #a5390e;
+}
+
+td{
+    padding:8px;
+    border:1px solid #ddd;
+}
+
+tbody tr:nth-child(even){
+    background:#fff7f3;
+}
+
+.total-row{
+    background:#fde7da;
+    font-weight:bold;
+}
+
+.total-row td{
+    border-top:2px solid #c2410c;
 }
 
 .text-center{
@@ -45,9 +113,27 @@ th{
     text-align:right;
 }
 
-.footer{
-    margin-top:30px;
-    text-align:right;
+.print-date{
+    margin-top:20px;
+    font-size:12px;
+    color:#666;
+}
+
+.signature{
+    margin-top:60px;
+    width:300px;
+    float:right;
+    text-align:center;
+}
+
+.signature p{
+    margin:5px 0;
+}
+
+.signature .nama{
+    margin-top:70px;
+    font-weight:bold;
+    text-decoration:underline;
 }
 
 </style>
@@ -56,45 +142,96 @@ th{
 
 <body onload="window.print()">
 
-<h2>PT MAJU JAYA ELECTRONIC</h2>
+<div class="header">
+<img src="<?= base_url('assets/img/logo-img.png'); ?>"
+     class="logo">
 
-<div class="subtitle">
-    LAPORAN BARANG & STOK
+<div class="company-info">
+
+    <h1>PT MAJU JAYA ELECTRONIC</h1>
+
+    <p>
+        Jl. Raya Industri No.123, Tangerang, Banten
+    </p>
+
+    <p>
+        Telp : (021) 12345678 |
+        Email : info@majujayaelectronic.com
+    </p>
+
+    <p>
+        Website : www.majujayaelectronic.com
+    </p>
+
 </div>
 
-<p>
-Periode :
-<?= !empty($bulan)
-    ? date('F',mktime(0,0,0,$bulan,1))
-    : 'Semua Bulan'; ?>
 
-<?= !empty($tahun)
-    ? $tahun
-    : ''; ?>
+</div>
+
+<div class="line"></div>
+<div class="line2"></div>
+
+<div class="report-title">
+
+
+<h2>LAPORAN BARANG & STOK</h2>
+
+<p>
+    Ringkasan Data Penjualan Produk dan Ketersediaan Stok
 </p>
+
+
+</div>
+
+<div class="info-laporan">
+
+
+<table>
+
+    <tr>
+        <td width="120"><b>Periode</b></td>
+        <td>:</td>
+        <td>
+            <?= !empty($bulan)
+                ? date('F',mktime(0,0,0,$bulan,1))
+                : 'Semua Bulan'; ?>
+
+            <?= !empty($tahun)
+                ? $tahun
+                : ''; ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td><b>Tanggal Cetak</b></td>
+        <td>:</td>
+        <td><?= date('d F Y'); ?></td>
+    </tr>
+
+</table>
+
+
+</div>
 
 <table>
 
 <thead>
-
 <tr>
-    <th>No</th>
+    <th width="50">No</th>
     <th>Kode Produk</th>
     <th>Nama Produk</th>
     <th>Kategori</th>
     <th>Harga</th>
     <th>Stok</th>
-    <th>Total Terjual</th>
+    <th>Terjual</th>
     <th>Total Penjualan</th>
 </tr>
-
 </thead>
 
 <tbody>
 
 <?php
 $no = 1;
-
 $total_terjual = 0;
 $total_penjualan = 0;
 
@@ -106,72 +243,59 @@ $total_penjualan += $row->total_penjualan;
 
 <tr>
 
-    <td class="text-center">
-        <?= $no++; ?>
-    </td>
 
-    <td>
-        <?= $row->kode_produk; ?>
-    </td>
+<td class="text-center">
+    <?= $no++; ?>
+</td>
 
-    <td>
-        <?= $row->nama_produk; ?>
-    </td>
+<td>
+    <?= $row->kode_produk; ?>
+</td>
 
-    <td>
-        <?= $row->nama_kategori; ?>
-    </td>
+<td>
+    <?= $row->nama_produk; ?>
+</td>
 
-    <td class="text-right">
-        Rp <?= number_format(
-            $row->harga,
-            0,
-            ',',
-            '.'
-        ); ?>
-    </td>
+<td>
+    <?= $row->nama_kategori; ?>
+</td>
 
-    <td class="text-center">
-        <?= $row->stok; ?>
-    </td>
+<td class="text-right">
+    Rp <?= number_format($row->harga,0,',','.'); ?>
+</td>
 
-    <td class="text-center">
-        <?= $row->total_terjual; ?>
-    </td>
+<td class="text-center">
+    <?= $row->stok; ?>
+</td>
 
-    <td class="text-right">
-        Rp <?= number_format(
-            $row->total_penjualan,
-            0,
-            ',',
-            '.'
-        ); ?>
-    </td>
+<td class="text-center">
+    <?= $row->total_terjual; ?>
+</td>
+
+<td class="text-right">
+    Rp <?= number_format($row->total_penjualan,0,',','.'); ?>
+</td>
+
 
 </tr>
 
 <?php endforeach; ?>
 
-<tr>
+<tr class="total-row">
 
-    <td colspan="6">
-        <b>Total</b>
-    </td>
 
-    <td class="text-center">
-        <b><?= $total_terjual; ?></b>
-    </td>
+<td colspan="6" class="text-right">
+    TOTAL
+</td>
 
-    <td class="text-right">
-        <b>
-            Rp <?= number_format(
-                $total_penjualan,
-                0,
-                ',',
-                '.'
-            ); ?>
-        </b>
-    </td>
+<td class="text-center">
+    <?= $total_terjual; ?>
+</td>
+
+<td class="text-right">
+    Rp <?= number_format($total_penjualan,0,',','.'); ?>
+</td>
+
 
 </tr>
 
@@ -179,14 +303,24 @@ $total_penjualan += $row->total_penjualan;
 
 </table>
 
-<div class="footer">
+<div class="print-date">
+    Dicetak oleh sistem pada <?= date('d F Y H:i'); ?>
+</div>
 
+<div class="signature">
+
+
+<p>
     Tangerang,
-    <?= date('d-m-Y'); ?>
+    <?= date('d F Y'); ?>
+</p>
 
-    <br><br><br><br>
+<p>Mengetahui,</p>
 
-    <b>Administrator</b>
+<p class="nama">
+    Administrator
+</p>
+
 
 </div>
 

@@ -31,13 +31,6 @@ class pelanggan_model extends CI_Model {
             ->update($this->table,$data);
     }
 
-    public function delete($id)
-    {
-        return $this->db
-            ->where('id_pelanggan',$id)
-            ->delete($this->table);
-    }
-
     public function generate_kode_pelanggan()
     {
         $this->db->select('RIGHT(kode_pelanggan,3) as nomor', FALSE);

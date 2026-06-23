@@ -33,8 +33,24 @@ class pelanggan_model extends CI_Model {
 
     public function delete($id)
     {
+        $relasi = [
+            'tbl_order' => 'id_pelanggan'
+        ];
+
+        foreach($relasi as $tabel => $field)
+        {
+            $jumlah = $this->db
+                ->where($field, $id)
+                ->count_all_results($tabel);
+
+            if($jumlah > 0)
+            {
+                return false;
+            }
+        }
+
         return $this->db
-            ->where('id_pelanggan',$id)
+            ->where('id_pelanggan', $id)
             ->delete($this->table);
     }
 

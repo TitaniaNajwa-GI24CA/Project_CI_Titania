@@ -72,4 +72,99 @@ class order extends CI_Controller {
         $this->load->view('admin/order/detail_order', $data);
         $this->load->view('admin/layouts/footer');
     }
+
+    public function cetak_nota($id_order)
+    {
+        $data['order_header'] = $this->order_model->get_order_header($id_order);
+        $data['order_detail'] = $this->order_model->get_order_detail($id_order);
+
+        $this->load->view('admin/order/nota_pesanan',$data);
+    }
+
+    public function kirim_notifikasi($id_order)
+    {
+        $order = $this->order_model->get_order_header($id_order);
+        if(!$order){show_404();}
+        $nomor = $order->no_telp;
+        if(substr($nomor,0,1) == '0'){
+            $nomor = '62'.substr($nomor,1);
+        }
+        switch($order->status){
+            case 'pending':
+                $pesan = "Halo {$order->nama_pelanggan},Pesanan Anda telah berhasil dibuat.
+                Kode Order : {$order->kode_order}
+                Total Pesanan : Rp ".number_format($order->total_order,0,',','.')."
+                Silakan segera melakukan pembayaran agar pesanan dapat diproses.
+                PT Maju Jaya Electronic";
+            break;
+
+            case 'dikirim':
+                $pesan = "Halo {$order->nama_pelanggan},
+                Pesanan dengan kode {$order->kode_order} sedang dalam proses pengiriman.
+                Terima kasih telah berbelanja di PT Maju Jaya Electronic.";
+            break;
+
+            case 'selesai':
+                $pesan = "Halo {$order->nama_pelanggan},
+                Pesanan dengan kode {$order->kode_order} telah selesai.
+                Terima kasih telah mempercayai PT Maju Jaya Electronic.
+                Kami tunggu pesanan berikutnya 😊";
+            break;
+
+            case 'dibatalkan':
+                $pesan = "Halo {$order->nama_pelanggan},
+                Mohon maaf, pesanan dengan kode {$order->kode_order} dibatalkan.
+                Silakan hubungi admin untuk informasi lebih lanjut.";
+            break;
+
+
+            default:
+                $pesan = "Informasi pesanan {$order->kode_order}";
+        }
+
+        $url = "https://wa.me/".$d->no_telp."?text=".urlencode($pesan);
+            redirect($url);
+        $this->kirim_wa($nomor, $pesan);
+        $this->session->set_flashdata(
+            'success',
+            'Notifikasi WhatsApp berhasil dikirim'
+        );
+        redirect('admin/order');
+    }
+
+    private function kirim_wa($target, $messege)
+    {
+        
+        $token = "a3VMHDqL1KhSisd9gKc3";
+        $curl  = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.fonnte.com/send",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode([
+                "token" => $token,
+                "target" => $target,
+                "message" => $messege
+            ]),
+            CURLOPT_HTTPHEADER => (
+                'Authorization: '.$token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
+    }
 }

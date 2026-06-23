@@ -199,4 +199,12 @@ class order extends CI_Controller {
         $this->load->view('sales/order/detail_order', $data);
         $this->load->view('sales/layouts/footer');
     }
+
+    public function cetak_nota($id_order)
+    {
+        $data['order_header'] = $this->order_model->get_order_header($id_order);
+        $data['order_detail'] = $this->order_model->get_order_detail($id_order);
+
+        $this->load->view('admin/order/nota_pesanan',$data);
+    }
 }

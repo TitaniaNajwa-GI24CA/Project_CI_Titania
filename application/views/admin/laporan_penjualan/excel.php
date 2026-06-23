@@ -10,7 +10,9 @@ header("Content-Disposition: attachment; filename=Laporan_Penjualan.xls");
 <tr>
     <th>No</th>
     <th>Kode Order</th>
+    <th>Produk</th>
     <th>Tanggal Order</th>
+    <th>Tanggal Pembayaran</th>
     <th>Pelanggan</th>
     <th>Sales</th>
     <th>Total Penjualan</th>
@@ -28,16 +30,20 @@ $total += $row->total_order;
 <tr>
     <td><?= $no++; ?></td>
     <td><?= $row->kode_order; ?></td>
-    <td><?= $row->tanggal_order; ?></td>
+    <td><?= $row->nama_produk; ?></td>
+    <td>
+       <?= date('d-m-Y',strtotime($row->tanggal_order)); ?>
+    </td>
+    <td>
+        <?= date('d-m-Y',strtotime($row->tanggal_pembayaran)); ?>
+    </td>
     <td><?= $row->nama_pelanggan; ?></td>
     <td><?= $row->nama_sales; ?></td>
     <td><?= $row->total_order; ?></td>
 </tr>
-
 <?php endforeach; ?>
-
 <tr>
-    <td colspan="5">
+    <td colspan="7">
         <b>Total Penjualan</b>
     </td>
 

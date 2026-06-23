@@ -83,6 +83,12 @@
                             class="view-btn">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
+
+                            <a href="<?= base_url('admin/order/kirim_notifikasi/'.$row->id_order); ?>"
+                                class="wa-btn"
+                                onclick="return confirm('Kirim notifikasi WhatsApp?')">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>
